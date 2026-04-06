@@ -75,5 +75,16 @@
     "featured": true,
     "order": 7,
     "active": true
+  },
+  {
+    "id": 8,
+    "name": "Truhlářství",
+    "slug": "truhlarstvi",
+    "description": "Výroba vestavěných skříní, postělí, paland a dalšího nábytku na míru.",
+    "shortDescription": "Výroba vestavěných skříní, postělí, paland a dalšího nábytku na míru.",
+    "icon": "🪚",
+    "featured": false,
+    "order": 8,
+    "active": true
   }
 ]
