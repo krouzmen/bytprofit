@@ -312,17 +312,9 @@
     "type": "textarea"
   },
   {
-    "id": 6,
-    "key": "home_stat1_label",
-    "value": "",
-    "label": "Statistika 1 — popis",
-    "page": "home",
-    "type": "text"
-  },
-  {
     "id": 7,
     "key": "home_stat2_value",
-    "value": "",
+    "value": "Navrhujeme jen to, co má smysl.",
     "label": "Statistika 2 — hodnota",
     "page": "home",
     "type": "text"
@@ -414,5 +406,13 @@
     "label": "Pro koho 1 — popis",
     "page": "about",
     "type": "textarea"
+  },
+  {
+    "id": 6,
+    "key": "home_stat1_label",
+    "value": "Každá investice do rekonstrukce by se vám měla vrátit.",
+    "label": "Statistika 1 — popis",
+    "page": "home",
+    "type": "text"
   }
 ]
