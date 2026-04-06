@@ -11,6 +11,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Netlify Forms detection (hidden, required for SPA) -->
+    <form name="poptavka" data-netlify="true" hidden>
+      <input name="firstName" /><input name="lastName" />
+      <input name="email" /><input name="phone" />
+      <input name="serviceType" /><input name="propertyType" />
+      <input name="address" /><input name="budget" />
+      <input name="timeline" /><textarea name="description"></textarea>
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

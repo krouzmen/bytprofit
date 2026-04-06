@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Loader2, HardHat } from "lucide-react";
-import { useCreateQuote } from "@workspace/api-client-react";
 import { Link } from "wouter";
 
 const quoteSchema = z.object({
@@ -66,7 +65,8 @@ const timelines = [
 
 export default function QuoteRequest() {
   const [isSuccess, setIsSuccess] = useState(false);
-  const createQuoteMutation = useCreateQuote();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const {
     register,
@@ -77,12 +77,26 @@ export default function QuoteRequest() {
   });
 
   const onSubmit = async (data: QuoteFormValues) => {
+    setIsSubmitting(true);
+    setSubmitError(false);
     try {
-      await createQuoteMutation.mutateAsync({ data });
+      const body = new URLSearchParams({ "form-name": "poptavka" });
+      (Object.entries(data) as [string, string | undefined][]).forEach(([key, val]) => {
+        if (val) body.append(key, val);
+      });
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setIsSuccess(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       console.error("Chyba při odesílání poptávky", error);
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -113,7 +127,8 @@ export default function QuoteRequest() {
               </div>
 
               <div className="bg-card rounded-3xl p-6 md:p-10 shadow-xl shadow-black/5 border border-border">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                <form name="poptavka" data-netlify="true" onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                  <input type="hidden" name="form-name" value="poptavka" />
                   
                   {/* Personal Info */}
                   <div>
@@ -239,7 +254,7 @@ export default function QuoteRequest() {
                     </div>
                   </div>
 
-                  {createQuoteMutation.isError && (
+                  {submitError && (
                     <div className="p-4 bg-destructive/10 border border-destructive/20 text-destructive rounded-xl text-sm font-medium">
                       Odeslání poptávky se nezdařilo. Zkuste to prosím znovu nebo nás kontaktujte telefonicky na <a href="tel:+420724496091" className="font-bold">+420 724 496 091</a>.
                     </div>
@@ -247,10 +262,10 @@ export default function QuoteRequest() {
 
                   <button
                     type="submit"
-                    disabled={createQuoteMutation.isPending}
+                    disabled={isSubmitting}
                     className="w-full py-4 bg-primary text-primary-foreground text-lg font-bold rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2"
                   >
-                    {createQuoteMutation.isPending ? (
+                    {isSubmitting ? (
                       <>
                         <Loader2 className="w-6 h-6 animate-spin" />
                         Odesílám...
