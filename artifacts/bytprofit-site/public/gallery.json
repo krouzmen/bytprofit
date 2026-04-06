@@ -6,5 +6,13 @@
     "order": 0,
     "active": true,
     "createdAt": "2026-04-06T15:37:39.252Z"
+  },
+  {
+    "id": 24,
+    "filename": "kuchyne_kv.png",
+    "description": "Moderní kuchyně po rekonstrukci - Karlovy Vary - bílá linka, rozvody, podlahy",
+    "order": 0,
+    "active": true,
+    "createdAt": "2026-04-06T15:40:03.571Z"
   }
 ]
