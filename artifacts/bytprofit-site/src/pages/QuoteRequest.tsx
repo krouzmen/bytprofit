@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Loader2, HardHat } from "lucide-react";
+import { useCreateQuote } from "@workspace/api-client-react";
 import { Link } from "wouter";
 
 const quoteSchema = z.object({
@@ -67,6 +68,7 @@ export default function QuoteRequest() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const createQuoteMutation = useCreateQuote();
 
   const {
     register,
@@ -80,16 +82,22 @@ export default function QuoteRequest() {
     setIsSubmitting(true);
     setSubmitError(false);
     try {
-      const body = new URLSearchParams({ "form-name": "poptavka" });
-      (Object.entries(data) as [string, string | undefined][]).forEach(([key, val]) => {
-        if (val) body.append(key, val);
-      });
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (import.meta.env.DEV) {
+        // Dev: post to local API server
+        await createQuoteMutation.mutateAsync({ data });
+      } else {
+        // Production (Netlify): use Netlify Forms
+        const body = new URLSearchParams({ "form-name": "poptavka" });
+        (Object.entries(data) as [string, string | undefined][]).forEach(([key, val]) => {
+          if (val) body.append(key, val);
+        });
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      }
       setIsSuccess(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
