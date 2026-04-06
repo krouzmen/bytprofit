@@ -7,6 +7,12 @@
   PNPM_VERSION = "10"
 
 [[redirects]]
+  from = "/api/*"
+  to = "/api/:splat"
+  status = 404
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
