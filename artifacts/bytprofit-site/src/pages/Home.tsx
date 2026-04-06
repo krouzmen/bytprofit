@@ -131,9 +131,9 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-white border-b border-border relative z-20 -mt-8 mx-4 sm:mx-8 lg:mx-auto max-w-5xl rounded-2xl shadow-xl p-8 lg:p-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, i) => (
+      <section className="bg-white border-b border-border relative z-10 sm:-mt-8 mx-4 sm:mx-8 lg:mx-auto max-w-5xl rounded-2xl shadow-xl p-8 lg:p-12">
+        <div className={`grid gap-6 ${stats.filter(s => s.value).length > 0 ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2'}`}>
+          {stats.filter(s => s.label || s.value).map((stat, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
@@ -142,8 +142,14 @@ export default function Home() {
               transition={{ delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-display font-extrabold text-secondary mb-2">{stat.value}</div>
-              <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</div>
+              {stat.value && (
+                <div className="text-4xl md:text-5xl font-display font-extrabold text-secondary mb-2">{stat.value}</div>
+              )}
+              {stat.label && (
+                <div className={stat.value ? "text-sm font-medium text-muted-foreground uppercase tracking-wider" : "text-base font-semibold text-secondary leading-snug"}>
+                  {stat.label}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
