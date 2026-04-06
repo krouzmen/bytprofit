@@ -1,6 +1,6 @@
 import { Router, type IRouter } from "express";
-import { db, siteContentTable, servicesTable } from "@workspace/db";
-import { asc } from "drizzle-orm";
+import { db, siteContentTable, servicesTable, galleryItemsTable } from "@workspace/db";
+import { asc, eq } from "drizzle-orm";
 import { execSync } from "child_process";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
@@ -14,9 +14,10 @@ const GITHUB_REMOTE = `https://krouzmen:${GITHUB_TOKEN}@github.com/krouzmen/bytp
 
 router.post("/admin/publish", async (_req, res) => {
   try {
-    const [content, services] = await Promise.all([
+    const [content, services, gallery] = await Promise.all([
       db.select().from(siteContentTable),
       db.select().from(servicesTable).orderBy(asc(servicesTable.order)),
+      db.select().from(galleryItemsTable).where(eq(galleryItemsTable.active, true)).orderBy(asc(galleryItemsTable.order)),
     ]);
 
     writeFileSync(
@@ -29,6 +30,11 @@ router.post("/admin/publish", async (_req, res) => {
       JSON.stringify(services, null, 2),
       "utf-8"
     );
+    writeFileSync(
+      resolve(PUBLIC_DIR, "gallery.json"),
+      JSON.stringify(gallery, null, 2),
+      "utf-8"
+    );
 
     const env = {
       ...process.env,
@@ -39,7 +45,7 @@ router.post("/admin/publish", async (_req, res) => {
 
     execSync('git config user.email "bytprofit@gmail.com"', execOpts);
     execSync('git config user.name "BytProfit Admin"', execOpts);
-    execSync("git add artifacts/bytprofit-site/public/content.json artifacts/bytprofit-site/public/services.json", execOpts);
+    execSync("git add artifacts/bytprofit-site/public/content.json artifacts/bytprofit-site/public/services.json artifacts/bytprofit-site/public/gallery.json artifacts/bytprofit-site/public/gallery/", execOpts);
 
     let committed = false;
     try {

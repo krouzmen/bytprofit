@@ -1,15 +1,17 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Eye, EyeOff, Star, StarOff, Settings, CheckCircle2,
   Pencil, X, Save, ChevronDown, ChevronUp, Loader2,
-  LayoutTemplate, Wrench, FileText, Home, Info, Upload
+  LayoutTemplate, Wrench, FileText, Home, Info, Upload,
+  ImageIcon, Trash2, ArrowUp, ArrowDown, PlusCircle
 } from "lucide-react";
 import {
   useListAllServices, useUpdateService,
   useListContent, useUpdateContent
 } from "@workspace/api-client-react";
 import type { Service, SiteContent } from "@workspace/api-client-react";
+import type { GalleryItem } from "@/hooks/useGallery";
 
 function PublishButton() {
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -205,7 +207,6 @@ function ContentTab() {
 
   return (
     <div>
-      {/* Page selector */}
       <div className="flex gap-2 mb-6 flex-wrap">
         {(pages.length ? pages : ["home", "about"]).map(page => (
           <button
@@ -244,9 +245,257 @@ function ContentTab() {
   );
 }
 
+// ─── Gallery tab ──────────────────────────────────────────────────────────────
+
+function GalleryItemCard({ item, total, onUpdate, onDelete, onMove }: {
+  item: GalleryItem;
+  total: number;
+  onUpdate: (id: number, data: Partial<GalleryItem>) => Promise<void>;
+  onDelete: (id: number) => Promise<void>;
+  onMove: (id: number, direction: "up" | "down") => Promise<void>;
+}) {
+  const [desc, setDesc] = useState(item.description);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const dirty = desc !== item.description;
+
+  const handleSaveDesc = async () => {
+    setSaving(true);
+    try {
+      await onUpdate(item.id, { description: desc });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!confirm("Opravdu smazat tuto fotografii?")) return;
+    setDeleting(true);
+    await onDelete(item.id);
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: deleting ? 0 : 1, scale: deleting ? 0.9 : 1 }}
+      className={`bg-card border border-border rounded-2xl overflow-hidden shadow-sm ${!item.active ? "opacity-60" : ""}`}
+    >
+      <div className="relative aspect-video bg-muted overflow-hidden">
+        <img
+          src={`/gallery/${item.filename}`}
+          alt={item.description || "Fotografie"}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            const img = e.target as HTMLImageElement;
+            img.style.display = "none";
+            img.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-muted-foreground"><svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div>`;
+          }}
+        />
+        <div className="absolute top-2 right-2 flex gap-1.5">
+          <button
+            onClick={() => onUpdate(item.id, { active: !item.active })}
+            title={item.active ? "Skrýt ze stránek" : "Zobrazit na stránce"}
+            className={`p-1.5 rounded-lg text-xs font-semibold backdrop-blur-sm transition-all ${item.active ? "bg-green-500/90 text-white hover:bg-red-500/90" : "bg-muted/90 text-muted-foreground hover:bg-green-500/90 hover:text-white"}`}
+          >
+            {item.active ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+          </button>
+          <button
+            onClick={handleDelete}
+            disabled={deleting}
+            title="Smazat fotografii"
+            className="p-1.5 rounded-lg backdrop-blur-sm bg-muted/90 text-muted-foreground hover:bg-destructive/90 hover:text-white transition-all"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
+        <div className="absolute top-2 left-2 flex flex-col gap-1">
+          <button
+            onClick={() => onMove(item.id, "up")}
+            disabled={item.order === 0}
+            title="Posunout výš"
+            className="p-1.5 rounded-lg backdrop-blur-sm bg-muted/90 text-muted-foreground hover:bg-primary/90 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ArrowUp className="w-3.5 h-3.5" />
+          </button>
+          <button
+            onClick={() => onMove(item.id, "down")}
+            disabled={item.order >= total - 1}
+            title="Posunout níž"
+            className="p-1.5 rounded-lg backdrop-blur-sm bg-muted/90 text-muted-foreground hover:bg-primary/90 hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ArrowDown className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="p-3 space-y-2">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={desc}
+            onChange={e => setDesc(e.target.value)}
+            placeholder="Popis fotografie (nepovinné)…"
+            className="flex-1 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-xs focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+          />
+          {dirty && (
+            <button
+              onClick={handleSaveDesc}
+              disabled={saving}
+              className="px-3 py-2 bg-primary text-primary-foreground rounded-lg text-xs font-semibold hover:bg-primary/90 disabled:opacity-50 transition-all shrink-0 flex items-center gap-1"
+            >
+              {saving ? <Loader2 className="w-3 h-3 animate-spin" /> : <Save className="w-3 h-3" />}
+              {saving ? "…" : "Uložit"}
+            </button>
+          )}
+        </div>
+        {saved && <p className="text-xs text-green-700 font-medium flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Uloženo</p>}
+      </div>
+    </motion.div>
+  );
+}
+
+function GalleryTab() {
+  const [items, setItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const loadItems = useCallback(async () => {
+    try {
+      const res = await fetch("/api/admin/gallery");
+      if (res.ok) setItems(await res.json());
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { loadItems(); }, [loadItems]);
+
+  const handleUpload = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    setUploading(true);
+    try {
+      for (const file of Array.from(files)) {
+        const fd = new FormData();
+        fd.append("image", file);
+        await fetch("/api/admin/gallery/upload", { method: "POST", body: fd });
+      }
+      await loadItems();
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
+  const handleUpdate = async (id: number, data: Partial<GalleryItem>) => {
+    await fetch(`/api/admin/gallery/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    await loadItems();
+  };
+
+  const handleDelete = async (id: number) => {
+    await fetch(`/api/admin/gallery/${id}`, { method: "DELETE" });
+    await loadItems();
+  };
+
+  const handleMove = async (id: number, direction: "up" | "down") => {
+    const sorted = [...items].sort((a, b) => a.order - b.order);
+    const idx = sorted.findIndex(i => i.id === id);
+    if (idx === -1) return;
+    const swapIdx = direction === "up" ? idx - 1 : idx + 1;
+    if (swapIdx < 0 || swapIdx >= sorted.length) return;
+    const a = sorted[idx];
+    const b = sorted[swapIdx];
+    await Promise.all([
+      fetch(`/api/admin/gallery/${a.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ order: b.order }) }),
+      fetch(`/api/admin/gallery/${b.id}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ order: a.order }) }),
+    ]);
+    await loadItems();
+  };
+
+  const sorted = [...items].sort((a, b) => a.order - b.order);
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <p className="text-sm text-muted-foreground">
+          {items.length === 0
+            ? "Zatím žádné fotografie. Nahrajte první snímek."
+            : `${items.length} ${items.length === 1 ? "fotografie" : items.length < 5 ? "fotografie" : "fotografií"} — aktivních: ${items.filter(i => i.active).length}`}
+        </p>
+        <div className="flex gap-3">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            onChange={e => handleUpload(e.target.files)}
+          />
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+            className="flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-semibold text-sm hover:bg-primary/90 disabled:opacity-60 transition-all duration-200 shadow-sm shadow-primary/20"
+          >
+            {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <PlusCircle className="w-4 h-4" />}
+            {uploading ? "Nahrávám…" : "Přidat fotografie"}
+          </button>
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {[1,2,3,4,5,6].map(i => <div key={i} className="aspect-video bg-muted animate-pulse rounded-2xl" />)}
+        </div>
+      ) : sorted.length === 0 ? (
+        <div
+          className="border-2 border-dashed border-border rounded-3xl p-16 text-center cursor-pointer hover:border-primary/40 transition-colors"
+          onClick={() => fileInputRef.current?.click()}
+        >
+          <ImageIcon className="w-12 h-12 text-muted-foreground/40 mx-auto mb-4" />
+          <p className="text-muted-foreground font-medium">Klikněte nebo přetáhněte fotografie sem</p>
+          <p className="text-sm text-muted-foreground/60 mt-1">Podporované formáty: JPG, PNG, WebP (max 10 MB)</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {sorted.map(item => (
+            <GalleryItemCard
+              key={item.id}
+              item={item}
+              total={sorted.length}
+              onUpdate={handleUpdate}
+              onDelete={handleDelete}
+              onMove={handleMove}
+            />
+          ))}
+        </div>
+      )}
+
+      <div className="mt-8 bg-muted/50 border border-border rounded-2xl p-5">
+        <div className="flex items-start gap-3">
+          <ImageIcon className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+          <div className="text-sm text-muted-foreground space-y-1">
+            <p><strong className="text-foreground">Přidat fotografie</strong> — nahrajte jednu nebo více fotografií najednou.</p>
+            <p><strong className="text-foreground">Oko</strong> — skrytá fotografie se na webu nezobrazí, ale zůstane uložená.</p>
+            <p><strong className="text-foreground">Šipky</strong> — měňte pořadí fotografií v galerii.</p>
+            <p><strong className="text-foreground">Publikovat na web</strong> — po úpravách nezapomeňte publikovat, aby se fotografie zobrazily na bytprofit.cz.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Admin page ──────────────────────────────────────────────────────────
 
-type Tab = "services" | "content";
+type Tab = "services" | "content" | "gallery";
 
 export default function Admin() {
   const [tab, setTab] = useState<Tab>("services");
@@ -284,6 +533,7 @@ export default function Admin() {
           {([
             { id: "services", label: "Služby", icon: <Wrench className="w-4 h-4" /> },
             { id: "content", label: "Stránky", icon: <FileText className="w-4 h-4" /> },
+            { id: "gallery", label: "Galerie", icon: <ImageIcon className="w-4 h-4" /> },
           ] as { id: Tab; label: string; icon: React.ReactNode }[]).map(t => (
             <button
               key={t.id}
@@ -328,7 +578,7 @@ export default function Admin() {
                 </div>
               </div>
             </motion.div>
-          ) : (
+          ) : tab === "content" ? (
             <motion.div key="content" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
               <ContentTab />
               <div className="mt-8 bg-muted/50 border border-border rounded-2xl p-5">
@@ -340,6 +590,10 @@ export default function Admin() {
                   </div>
                 </div>
               </div>
+            </motion.div>
+          ) : (
+            <motion.div key="gallery" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}>
+              <GalleryTab />
             </motion.div>
           )}
         </AnimatePresence>

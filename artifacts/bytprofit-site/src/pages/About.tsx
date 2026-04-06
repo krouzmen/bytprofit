@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Award, Target, Users, ThumbsUp, CheckCircle2, TrendingUp } from "lucide-react";
+import { Award, Target, Users, ThumbsUp, CheckCircle2, TrendingUp, ZoomIn } from "lucide-react";
 import { useContent } from "@/hooks/useContent";
+import { useGallery } from "@/hooks/useGallery";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const ABOUT_DEFAULTS: Record<string, string> = {
   about_hero_title1: "Investiční byt",
@@ -34,6 +38,9 @@ const VALUE_ICONS = [
 
 export default function About() {
   const c = useContent("about", ABOUT_DEFAULTS);
+  const { items: galleryItems } = useGallery();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const forWhom = [
     { icon: "🏦", title: c.about_forwhom1_title, desc: c.about_forwhom1_desc },
@@ -47,6 +54,16 @@ export default function About() {
     { icon: VALUE_ICONS[2], title: c.about_value3_title, desc: c.about_value3_desc },
     { icon: VALUE_ICONS[3], title: c.about_value4_title, desc: c.about_value4_desc },
   ];
+
+  const lightboxSlides = galleryItems.map(item => ({
+    src: `/gallery/${item.filename}`,
+    title: item.description || undefined,
+  }));
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   return (
     <div className="min-h-screen pt-28 bg-background">
@@ -141,6 +158,59 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Gallery */}
+      {galleryItems.length > 0 && (
+        <section className="py-24 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">Ukázky naší práce</h2>
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+                Klikněte na fotografii pro zobrazení v plné velikosti.
+              </p>
+            </div>
+
+            <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+              {galleryItems.map((item, i) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: Math.min(i * 0.06, 0.4) }}
+                  className="relative group break-inside-avoid cursor-pointer overflow-hidden rounded-2xl shadow-sm border border-border"
+                  onClick={() => openLightbox(i)}
+                >
+                  <img
+                    src={`/gallery/${item.filename}`}
+                    alt={item.description || `Fotografie ${i + 1}`}
+                    className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <ZoomIn className="w-6 h-6 text-white" />
+                    </div>
+                  </div>
+                  {item.description && (
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                      <p className="text-white text-sm font-medium line-clamp-2">{item.description}</p>
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <Lightbox
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            index={lightboxIndex}
+            slides={lightboxSlides}
+            on={{ view: ({ index }) => setLightboxIndex(index) }}
+          />
+        </section>
+      )}
 
       {/* What we arrange */}
       <section className="py-24 bg-background">
