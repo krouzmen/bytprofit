@@ -368,14 +368,6 @@
     "type": "text"
   },
   {
-    "id": 31,
-    "key": "home_cta_phone",
-    "value": "+420 72449091",
-    "label": "Telefon",
-    "page": "home",
-    "type": "tel"
-  },
-  {
     "id": 36,
     "key": "about_hero_p2",
     "value": "Pracujeme primárně s investory, majiteli bytů a realitními makléři, kteří potřebují byt připravit rychle a efektivně. Víme, na čem záleží a co naopak není třeba přehánět.",
@@ -390,6 +382,14 @@
     "label": "Odstavec 1",
     "page": "about",
     "type": "textarea"
+  },
+  {
+    "id": 31,
+    "key": "home_cta_phone",
+    "value": "+420 724 496 091",
+    "label": "Telefon",
+    "page": "home",
+    "type": "tel"
   },
   {
     "id": 40,
