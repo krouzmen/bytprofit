@@ -86,5 +86,16 @@
     "featured": true,
     "order": 8,
     "active": true
+  },
+  {
+    "id": 9,
+    "name": "Pronájem nemovitosti",
+    "slug": "pronajem-nemovitosti",
+    "description": "Pronajmeme vaši nemovitost, nemusíte se o nic starat.",
+    "shortDescription": "Pronajmeme vaši nemovitost, nemusíte se o nic starat.",
+    "icon": "🏠",
+    "featured": false,
+    "order": 9,
+    "active": true
   }
 ]
