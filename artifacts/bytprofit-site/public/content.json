@@ -24,70 +24,6 @@
     "type": "text"
   },
   {
-    "id": 4,
-    "key": "home_hero_subtitle",
-    "value": "Specializujeme se na rychlé a cenově výhodné rekonstrukce investičních bytů před prodejem nebo pronájmem. Vyklizení, malování, podlahy, koupelna, kuchyně, elektrika — vše na klíč.",
-    "label": "Hero podtitulek",
-    "page": "home",
-    "type": "textarea"
-  },
-  {
-    "id": 5,
-    "key": "home_stat1_value",
-    "value": "350+",
-    "label": "Statistika 1 — hodnota",
-    "page": "home",
-    "type": "text"
-  },
-  {
-    "id": 6,
-    "key": "home_stat1_label",
-    "value": "Zrekonstruovaných bytů",
-    "label": "Statistika 1 — popis",
-    "page": "home",
-    "type": "text"
-  },
-  {
-    "id": 7,
-    "key": "home_stat2_value",
-    "value": "3–6",
-    "label": "Statistika 2 — hodnota",
-    "page": "home",
-    "type": "text"
-  },
-  {
-    "id": 8,
-    "key": "home_stat2_label",
-    "value": "Týdnů na realizaci",
-    "label": "Statistika 2 — popis",
-    "page": "home",
-    "type": "text"
-  },
-  {
-    "id": 9,
-    "key": "home_stat3_value",
-    "value": "98%",
-    "label": "Statistika 3 — hodnota",
-    "page": "home",
-    "type": "text"
-  },
-  {
-    "id": 10,
-    "key": "home_stat3_label",
-    "value": "Spokojených investorů",
-    "label": "Statistika 3 — popis",
-    "page": "home",
-    "type": "text"
-  },
-  {
-    "id": 11,
-    "key": "home_stat4_value",
-    "value": "15+",
-    "label": "Statistika 4 — hodnota",
-    "page": "home",
-    "type": "text"
-  },
-  {
     "id": 12,
     "key": "home_stat4_label",
     "value": "Let zkušeností",
@@ -192,14 +128,6 @@
     "type": "textarea"
   },
   {
-    "id": 25,
-    "key": "home_feature2_title",
-    "value": "Hotovo za 3–6 týdnů",
-    "label": "Výhoda 2 — nadpis",
-    "page": "home",
-    "type": "text"
-  },
-  {
     "id": 26,
     "key": "home_feature2_desc",
     "value": "Rychlá realizace bez zbytečných průtahů. Koordinujeme všechny řemeslníky najednou, aby práce šla hladce a rychle.",
@@ -240,14 +168,6 @@
     "type": "textarea"
   },
   {
-    "id": 31,
-    "key": "home_cta_phone",
-    "value": "+420 731 599 333",
-    "label": "Telefon",
-    "page": "home",
-    "type": "tel"
-  },
-  {
     "id": 32,
     "key": "home_cta_button",
     "value": "Poslat poptávku online — zdarma a nezávazně",
@@ -272,30 +192,6 @@
     "type": "text"
   },
   {
-    "id": 35,
-    "key": "about_hero_p1",
-    "value": "BytProfit vznikl před více než 12 lety se zaměřením na jedinou věc — rychlé a cenově výhodné rekonstrukce bytů před prodejem nebo pronájmem.",
-    "label": "Odstavec 1",
-    "page": "about",
-    "type": "textarea"
-  },
-  {
-    "id": 36,
-    "key": "about_hero_p2",
-    "value": "Pracujeme primárně s investory, developery a realitními makléři, kteří potřebují byt připravit rychle a efektivně. Víme, na čem záleží a co naopak není třeba přehánět.",
-    "label": "Odstavec 2",
-    "page": "about",
-    "type": "textarea"
-  },
-  {
-    "id": 37,
-    "key": "about_hero_p3",
-    "value": "Za dobu naší existence jsme zrekonstruovali přes 350 bytů v Praze a okolí. Každý projekt dokončujeme v dohodnutém termínu a za dohodnutou cenu — bez výmluv a překvapení.",
-    "label": "Odstavec 3",
-    "page": "about",
-    "type": "textarea"
-  },
-  {
     "id": 38,
     "key": "about_hero_quote",
     "value": "Rekonstrukce, která zvyšuje hodnotu vašeho bytu.",
@@ -310,14 +206,6 @@
     "label": "Pro koho 1 — nadpis",
     "page": "about",
     "type": "text"
-  },
-  {
-    "id": 40,
-    "key": "about_forwhom1_desc",
-    "value": "Koupili jste byt k prodeji se ziskem? Připravíme ho rychle a efektivně tak, aby zaujal co nejvíce kupců a dosáhl nejvyšší ceny.",
-    "label": "Pro koho 1 — popis",
-    "page": "about",
-    "type": "textarea"
   },
   {
     "id": 41,
@@ -412,6 +300,118 @@
     "key": "about_value4_desc",
     "value": "Férová cena, žádné vícepráce navíc, jasná smlouva a splněné slovo.",
     "label": "Hodnota 4 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 4,
+    "key": "home_hero_subtitle",
+    "value": "Specializujeme se na rychlé a cenově výhodné rekonstrukce investičních bytů před prodejem nebo pronájmem. Poradíme vám, jak nejlépe zhodnotit váš byt, za nejmenší náklady. Vyklizení, malování, podlahy, koupelna, kuchyně, elektrika — vše na klíč.",
+    "label": "Hero podtitulek",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 6,
+    "key": "home_stat1_label",
+    "value": "",
+    "label": "Statistika 1 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 7,
+    "key": "home_stat2_value",
+    "value": "",
+    "label": "Statistika 2 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 8,
+    "key": "home_stat2_label",
+    "value": "",
+    "label": "Statistika 2 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 10,
+    "key": "home_stat3_label",
+    "value": "Týdnů na rekonstrukci",
+    "label": "Statistika 3 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 9,
+    "key": "home_stat3_value",
+    "value": "1-5",
+    "label": "Statistika 3 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 5,
+    "key": "home_stat1_value",
+    "value": "",
+    "label": "Statistika 1 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 11,
+    "key": "home_stat4_value",
+    "value": "10+",
+    "label": "Statistika 4 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 25,
+    "key": "home_feature2_title",
+    "value": "Hotovo za 1–5 týdnů",
+    "label": "Výhoda 2 — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 31,
+    "key": "home_cta_phone",
+    "value": "+420 72449091",
+    "label": "Telefon",
+    "page": "home",
+    "type": "tel"
+  },
+  {
+    "id": 36,
+    "key": "about_hero_p2",
+    "value": "Pracujeme primárně s investory, majiteli bytů a realitními makléři, kteří potřebují byt připravit rychle a efektivně. Víme, na čem záleží a co naopak není třeba přehánět.",
+    "label": "Odstavec 2",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 35,
+    "key": "about_hero_p1",
+    "value": "BytProfit vznikl se zaměřením na jedinou věc — rychlé a cenově výhodné rekonstrukce bytů před prodejem nebo pronájmem.",
+    "label": "Odstavec 1",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 37,
+    "key": "about_hero_p3",
+    "value": "",
+    "label": "Odstavec 3",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 40,
+    "key": "about_forwhom1_desc",
+    "value": "Koupili jste byt a chcete ho připravit k prodeji se ziskem? Připravíme ho rychle a efektivně tak, aby zaujal co nejvíce kupců a dosáhl nejvyšší ceny.",
+    "label": "Pro koho 1 — popis",
     "page": "about",
     "type": "textarea"
   }
