@@ -7,7 +7,7 @@ const ABOUT_DEFAULTS: Record<string, string> = {
   about_hero_title2: "připravíme rychle.",
   about_hero_p1: "BytProfit vznikl před více než 12 lety se zaměřením na jedinou věc — rychlé a cenově výhodné rekonstrukce bytů před prodejem nebo pronájmem.",
   about_hero_p2: "Pracujeme primárně s investory, developery a realitními makléři, kteří potřebují byt připravit rychle a efektivně. Víme, na čem záleží a co naopak není třeba přehánět.",
-  about_hero_p3: "Za dobu naší existence jsme zrekonstruovali přes 350 bytů v Praze a okolí. Každý projekt dokončujeme v dohodnutém termínu a za dohodnutou cenu — bez výmluv a překvapení.",
+  about_hero_p3: "Za dobu naší existence jsme zrekonstruovali přes 350 bytů v Karlových Varech, Plzni a okolí. Každý projekt dokončujeme v dohodnutém termínu a za dohodnutou cenu — bez výmluv a překvapení.",
   about_hero_quote: "Rekonstrukce, která zvyšuje hodnotu vašeho bytu.",
   about_forwhom1_title: "Investoři a flippeři",
   about_forwhom1_desc: "Koupili jste byt k prodeji se ziskem? Připravíme ho rychle a efektivně tak, aby zaujal co nejvíce kupců a dosáhl nejvyšší ceny.",

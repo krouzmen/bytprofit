@@ -199,7 +199,7 @@ export default function QuoteRequest() {
                         <input 
                           {...register("address")}
                           className="w-full px-4 py-3 rounded-xl bg-background border-2 border-border focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
-                          placeholder="Ulice, číslo popisné, Praha"
+                          placeholder="Ulice, číslo popisné, Karlovy Vary"
                         />
                       </div>
 

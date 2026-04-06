@@ -5,7 +5,7 @@ import { useContent } from "@/hooks/useContent";
 import { useStaticServices } from "@/hooks/useServices";
 
 const HOME_DEFAULTS: Record<string, string> = {
-  home_hero_badge: "Rekonstrukce investičních bytů — Praha a okolí",
+  home_hero_badge: "Rekonstrukce investičních bytů — Karlovy Vary, Plzeň a okolí",
   home_hero_title1: "Levně. Rychle.",
   home_hero_title2: "Připraveno k prodeji.",
   home_hero_subtitle: "Specializujeme se na rychlé a cenově výhodné rekonstrukce investičních bytů před prodejem nebo pronájmem. Vyklizení, malování, podlahy, koupelna, kuchyně, elektrika — vše na klíč.",
