@@ -1,17 +1,14 @@
 import { Router, type IRouter } from "express";
 import { db, quotesTable, insertQuoteSchema } from "@workspace/db";
 import { desc } from "drizzle-orm";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 const router: IRouter = Router();
 
-function createTransporter() {
-  const pass = process.env.GMAIL_APP_PASSWORD;
-  if (!pass) return null;
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: "bytprofit@gmail.com", pass },
-  });
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return null;
+  return new Resend(key);
 }
 
 function buildEmailHtml(data: {
@@ -102,21 +99,26 @@ router.post("/quotes", async (req, res) => {
       })
       .returning();
 
-    const transporter = createTransporter();
-    if (transporter) {
+    const resend = getResend();
+    if (resend) {
       try {
-        await transporter.sendMail({
-          from: '"BytProfit Web" <bytprofit@gmail.com>',
+        const result = await resend.emails.send({
+          from: "BytProfit Web <onboarding@resend.dev>",
           to: "bytprofit@gmail.com",
+          replyTo: data.email,
           subject: `Nová poptávka od ${data.firstName} ${data.lastName}`,
           html: buildEmailHtml(data),
-          replyTo: data.email,
         });
+        if (result.error) {
+          console.error("Email send failed (quote still saved):", result.error);
+        } else {
+          console.info("Email sent:", result.data?.id);
+        }
       } catch (mailErr) {
         console.error("Email send failed (quote still saved):", mailErr);
       }
     } else {
-      console.warn("GMAIL_APP_PASSWORD not set — email not sent");
+      console.warn("RESEND_API_KEY not set — email not sent");
     }
 
     res.status(201).json(quote);
