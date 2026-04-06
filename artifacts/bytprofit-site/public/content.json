@@ -312,18 +312,18 @@
     "type": "textarea"
   },
   {
-    "id": 7,
-    "key": "home_stat2_value",
+    "id": 8,
+    "key": "home_stat2_label",
     "value": "Navrhujeme jen to, co má smysl.",
-    "label": "Statistika 2 — hodnota",
+    "label": "Statistika 2 — popis",
     "page": "home",
     "type": "text"
   },
   {
-    "id": 8,
-    "key": "home_stat2_label",
+    "id": 7,
+    "key": "home_stat2_value",
     "value": "",
-    "label": "Statistika 2 — popis",
+    "label": "Statistika 2 — hodnota",
     "page": "home",
     "type": "text"
   },
