@@ -14,5 +14,13 @@
     "order": 0,
     "active": true,
     "createdAt": "2026-04-06T15:40:03.571Z"
+  },
+  {
+    "id": 25,
+    "filename": "img_1775490537796_ez9ud.jpg",
+    "description": "Pokoj - Plzeň Koperníkova - zdi, podlady",
+    "order": 2,
+    "active": true,
+    "createdAt": "2026-04-06T15:48:58.067Z"
   }
 ]
