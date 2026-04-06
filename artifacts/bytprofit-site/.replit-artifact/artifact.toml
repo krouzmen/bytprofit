@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "bytProfit Website"
+version = "1.0.0"
+id = "artifacts/bytprofit-site"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22346
+
+[services.development]
+run = "pnpm --filter @workspace/bytprofit-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bytprofit-site", "run", "build" ]
+publicDir = "artifacts/bytprofit-site/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22346"
+BASE_PATH = "/"

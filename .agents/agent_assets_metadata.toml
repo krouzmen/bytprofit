@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "_pXYtlNUYRbK3UxeIc3Rq"
+uri = "file://artifacts/bytprofit-site/public/images/hero-bg.png"
+type = "image"
+title = "Hero modern flat interior"
+
+[[generated]]
+id = "UdDt0wlq6H2UlxMN2YjBH"
+uri = "file://artifacts/bytprofit-site/public/images/kitchen-reno.png"
+type = "image"
+title = "Modern kitchen renovation"
+
+[[generated]]
+id = "9btlzju6Y64-9HutbHeV_"
+uri = "file://artifacts/bytprofit-site/public/images/bathroom-reno.png"
+type = "image"
+title = "Modern bathroom renovation"
+
+[[generated]]
+id = "6Wi9TtCs-joOvEb4iUL_F"
+uri = "file://artifacts/bytprofit-site/public/images/craftsman.png"
+type = "image"
+title = "Craftsman working on wood"
