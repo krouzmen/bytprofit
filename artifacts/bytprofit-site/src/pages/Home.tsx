@@ -31,7 +31,7 @@ const HOME_DEFAULTS: Record<string, string> = {
   home_feature3_desc: "Žádná překvapení na faktuře. Domluvíme se na ceně a rozsahu předem — a tu cenu dodržíme.",
   home_cta_title: "Chcete byt připravit k prodeji nebo pronájmu?",
   home_cta_subtitle: "Kontaktujte nás — přijedeme se podívat a připravíme vám nezávaznou kalkulaci zdarma.",
-  home_cta_phone: "+420 731 599 333",
+  home_cta_phone: "+420 724 496 091",
   home_cta_button: "Poslat poptávku online — zdarma a nezávazně",
 };
 

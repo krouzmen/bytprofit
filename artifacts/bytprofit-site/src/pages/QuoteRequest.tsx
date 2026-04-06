@@ -156,7 +156,7 @@ export default function QuoteRequest() {
                           type="tel"
                           {...register("phone")}
                           className="w-full px-4 py-3 rounded-xl bg-background border-2 border-border focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
-                          placeholder="+420 731 599 333"
+                          placeholder="+420 724 496 091"
                         />
                         {errors.phone && <p className="text-destructive text-sm mt-1">{errors.phone.message}</p>}
                       </div>
@@ -241,7 +241,7 @@ export default function QuoteRequest() {
 
                   {createQuoteMutation.isError && (
                     <div className="p-4 bg-destructive/10 border border-destructive/20 text-destructive rounded-xl text-sm font-medium">
-                      Odeslání poptávky se nezdařilo. Zkuste to prosím znovu nebo nás kontaktujte telefonicky na <a href="tel:+420731599333" className="font-bold">+420 731 599 333</a>.
+                      Odeslání poptávky se nezdařilo. Zkuste to prosím znovu nebo nás kontaktujte telefonicky na <a href="tel:+420724496091" className="font-bold">+420 724 496 091</a>.
                     </div>
                   )}
 
@@ -280,7 +280,7 @@ export default function QuoteRequest() {
                 Děkujeme. Ozveme se vám do 24 hodin s návrhem termínu prohlídky a předběžnou kalkulací.
               </p>
               <p className="text-muted-foreground mb-8">
-                Nebo nás kontaktujte přímo: <a href="tel:+420731599333" className="text-primary font-bold">+420 731 599 333</a>
+                Nebo nás kontaktujte přímo: <a href="tel:+420724496091" className="text-primary font-bold">+420 724 496 091</a>
               </p>
               <Link 
                 href="/"

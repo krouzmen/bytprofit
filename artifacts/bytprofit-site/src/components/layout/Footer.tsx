@@ -50,11 +50,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-secondary-foreground/70">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span>+420 731 599 333</span>
+                <span>+420 724 496 091</span>
               </li>
               <li className="flex items-center gap-3 text-secondary-foreground/70">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>info@bytprofit.cz</span>
+                <span>bytprofit@gmail.com</span>
               </li>
             </ul>
           </div>
