@@ -83,7 +83,7 @@
     "description": "Výroba vestavěných skříní, postělí, paland a dalšího nábytku na míru.",
     "shortDescription": "Výroba vestavěných skříní, postělí, paland a dalšího nábytku na míru.",
     "icon": "🪚",
-    "featured": false,
+    "featured": true,
     "order": 8,
     "active": true
   }
