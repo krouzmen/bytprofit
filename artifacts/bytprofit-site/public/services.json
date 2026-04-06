@@ -16,7 +16,7 @@
     "slug": "podlahy",
     "description": "Pokládka vinylových, laminátových nebo dřevěných podlah. Vše od vyklizení staré podlahy, přípravy podkladu po finální montáž.",
     "shortDescription": "Vinyl, laminát, dřevo",
-    "icon": "🪵",
+    "icon": "🟫",
     "featured": true,
     "order": 2,
     "active": true
@@ -82,7 +82,7 @@
     "slug": "truhlarstvi",
     "description": "Výroba vestavěných skříní, postělí, paland a dalšího nábytku na míru.",
     "shortDescription": "Výroba vestavěných skříní, postělí, paland a dalšího nábytku na míru.",
-    "icon": "🪚",
+    "icon": "🪑",
     "featured": true,
     "order": 8,
     "active": true
@@ -94,7 +94,7 @@
     "description": "Pronajmeme vaši nemovitost, nemusíte se o nic starat.",
     "shortDescription": "Pronajmeme vaši nemovitost, nemusíte se o nic starat.",
     "icon": "🏠",
-    "featured": false,
+    "featured": true,
     "order": 9,
     "active": true
   }
