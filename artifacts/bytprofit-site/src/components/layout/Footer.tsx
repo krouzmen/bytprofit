@@ -24,10 +24,10 @@ export default function Footer() {
           <div>
             <h3 className="font-display font-semibold text-lg mb-4">Rychlé odkazy</h3>
             <ul className="space-y-3">
-              <li><Link href="/" className="text-secondary-foreground/70 hover:text-white transition-colors">Úvod</Link></li>
-              <li><Link href="/services" className="text-secondary-foreground/70 hover:text-white transition-colors">Naše služby</Link></li>
-              <li><Link href="/about" className="text-secondary-foreground/70 hover:text-white transition-colors">O nás</Link></li>
-              <li><Link href="/quote" className="text-secondary-foreground/70 hover:text-white transition-colors">Poptávka zdarma</Link></li>
+              <li><Link href="/" className="block py-1 text-secondary-foreground/70 hover:text-white active:text-white transition-colors">Úvod</Link></li>
+              <li><Link href="/services" className="block py-1 text-secondary-foreground/70 hover:text-white active:text-white transition-colors">Naše služby</Link></li>
+              <li><Link href="/about" className="block py-1 text-secondary-foreground/70 hover:text-white active:text-white transition-colors">O nás</Link></li>
+              <li><Link href="/quote" className="block py-1 text-secondary-foreground/70 hover:text-white active:text-white transition-colors">Poptávka zdarma</Link></li>
             </ul>
           </div>
 
@@ -50,11 +50,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-secondary-foreground/70">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span>+420 724 496 091</span>
+                <a href="tel:+420724496091" className="hover:text-white active:text-white transition-colors">+420 724 496 091</a>
               </li>
               <li className="flex items-center gap-3 text-secondary-foreground/70">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>bytprofit@gmail.com</span>
+                <a href="mailto:bytprofit@gmail.com" className="hover:text-white active:text-white transition-colors">bytprofit@gmail.com</a>
               </li>
             </ul>
           </div>
