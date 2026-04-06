@@ -1,8 +1,8 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, ShieldCheck, Clock, TrendingUp } from "lucide-react";
-import { useListServices } from "@workspace/api-client-react";
 import { useContent } from "@/hooks/useContent";
+import { useStaticServices } from "@/hooks/useServices";
 
 const HOME_DEFAULTS: Record<string, string> = {
   home_hero_badge: "Rekonstrukce investičních bytů — Praha a okolí",
@@ -43,8 +43,8 @@ const FEATURE_ICONS = [
 
 export default function Home() {
   const c = useContent("home", HOME_DEFAULTS);
-  const { data: services, isLoading } = useListServices();
-  const featuredServices = services?.filter(s => s.featured).slice(0, 3) || [];
+  const { data: services, isLoading } = useStaticServices();
+  const featuredServices = services.filter(s => s.featured).slice(0, 3);
 
   const stats = [
     { value: c.home_stat1_value, label: c.home_stat1_label },

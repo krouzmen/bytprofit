@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "name": "Malování a stěrkování",
+    "slug": "malovani",
+    "description": "Profesionální malování bytů včetně stěrkování stěn. Kvalitní materiály, čistá práce, rychlá realizace.",
+    "shortDescription": "Malování, stěrkování stěn",
+    "icon": "🖌️",
+    "featured": true,
+    "order": 1,
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Nové podlahy",
+    "slug": "podlahy",
+    "description": "Pokládka vinylových, laminátových nebo dřevěných podlah. Vše od přípravy podkladu po finální montáž.",
+    "shortDescription": "Vinyl, laminát, dřevo",
+    "icon": "🪵",
+    "featured": true,
+    "order": 2,
+    "active": true
+  },
+  {
+    "id": 3,
+    "name": "Rekonstrukce koupelny",
+    "slug": "koupelna",
+    "description": "Kompletní rekonstrukce koupelny — obklady, dlažby, sanitární zařízení, sprchové kouty, vany.",
+    "shortDescription": "Obklady, dlažba, sanitární",
+    "icon": "🚿",
+    "featured": true,
+    "order": 3,
+    "active": true
+  },
+  {
+    "id": 4,
+    "name": "Kuchyňská linka",
+    "slug": "kuchyne",
+    "description": "Výměna nebo instalace nové kuchyňské linky, dřezu, pracovní desky. Rychle a bez zbytečného bordelu.",
+    "shortDescription": "Kuchyně na klíč",
+    "icon": "🍳",
+    "featured": false,
+    "order": 4,
+    "active": true
+  },
+  {
+    "id": 5,
+    "name": "Vyklizení bytu",
+    "slug": "vyklizeni",
+    "description": "Kompletní vyklizení bytu před nebo po rekonstrukci. Odvoz odpadu, likvidace starého nábytku.",
+    "shortDescription": "Vyklizení a odvoz odpadu",
+    "icon": "🗑️",
+    "featured": false,
+    "order": 5,
+    "active": true
+  },
+  {
+    "id": 6,
+    "name": "Elektroinstalace",
+    "slug": "elektrika",
+    "description": "Kompletní elektrické rozvody, výměna pojistkových skříní, přidání zásuvek a osvětlení.",
+    "shortDescription": "Elektrika a osvětlení",
+    "icon": "⚡",
+    "featured": false,
+    "order": 6,
+    "active": true
+  },
+  {
+    "id": 7,
+    "name": "Rekonstrukce na klíč",
+    "slug": "na-klíč",
+    "description": "Kompletní rekonstrukce od A do Z — koordinujeme všechny řemeslníky, vy se nemusíte o nic starat.",
+    "shortDescription": "Vše v jednom",
+    "icon": "🔑",
+    "featured": false,
+    "order": 7,
+    "active": true
+  }
+]

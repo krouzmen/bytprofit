@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, Settings2 } from "lucide-react";
-import { useListServices } from "@workspace/api-client-react";
+import { useStaticServices } from "@/hooks/useServices";
 
 export default function Services() {
-  const { data: services, isLoading, error } = useListServices();
+  const { data: services, isLoading, error } = useStaticServices();
 
   return (
     <div className="min-h-screen pt-28 pb-24 bg-background">

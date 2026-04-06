@@ -1,0 +1,418 @@
+[
+  {
+    "id": 1,
+    "key": "home_hero_badge",
+    "value": "Rekonstrukce investičních bytů — Praha a okolí",
+    "label": "Hero badge",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 2,
+    "key": "home_hero_title1",
+    "value": "Levně. Rychle.",
+    "label": "Nadpis řádek 1",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 3,
+    "key": "home_hero_title2",
+    "value": "Připraveno k prodeji.",
+    "label": "Nadpis řádek 2",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 4,
+    "key": "home_hero_subtitle",
+    "value": "Specializujeme se na rychlé a cenově výhodné rekonstrukce investičních bytů před prodejem nebo pronájmem. Vyklizení, malování, podlahy, koupelna, kuchyně, elektrika — vše na klíč.",
+    "label": "Hero podtitulek",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 5,
+    "key": "home_stat1_value",
+    "value": "350+",
+    "label": "Statistika 1 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 6,
+    "key": "home_stat1_label",
+    "value": "Zrekonstruovaných bytů",
+    "label": "Statistika 1 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 7,
+    "key": "home_stat2_value",
+    "value": "3–6",
+    "label": "Statistika 2 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 8,
+    "key": "home_stat2_label",
+    "value": "Týdnů na realizaci",
+    "label": "Statistika 2 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 9,
+    "key": "home_stat3_value",
+    "value": "98%",
+    "label": "Statistika 3 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 10,
+    "key": "home_stat3_label",
+    "value": "Spokojených investorů",
+    "label": "Statistika 3 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 11,
+    "key": "home_stat4_value",
+    "value": "15+",
+    "label": "Statistika 4 — hodnota",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 12,
+    "key": "home_stat4_label",
+    "value": "Let zkušeností",
+    "label": "Statistika 4 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 13,
+    "key": "home_usecases_title",
+    "value": "Rekonstrukce, která se vyplatí",
+    "label": "Sekce použití — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 14,
+    "key": "home_usecases_subtitle",
+    "value": "Pracujeme s investory, majiteli bytů a realitními makléři. Víme, co trh chce — a doručíme to rychle a za rozumnou cenu.",
+    "label": "Sekce použití — podtitulek",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 15,
+    "key": "home_usecase1_title",
+    "value": "Před prodejem",
+    "label": "Případ použití 1 — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 16,
+    "key": "home_usecase1_desc",
+    "value": "Byt po rekonstrukci se prodá rychleji a za výrazně vyšší cenu. Investice do renovace se vám mnohonásobně vrátí.",
+    "label": "Případ použití 1 — popis",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 17,
+    "key": "home_usecase1_cta",
+    "value": "Chci prodat",
+    "label": "Případ použití 1 — tlačítko",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 18,
+    "key": "home_usecase2_title",
+    "value": "Před pronájmem",
+    "label": "Případ použití 2 — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 19,
+    "key": "home_usecase2_desc",
+    "value": "Rekonstruovaný byt získá vyššího nájemníka za vyšší nájemné. Méně starostí, vyšší výnos.",
+    "label": "Případ použití 2 — popis",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 20,
+    "key": "home_usecase2_cta",
+    "value": "Chci pronajímat",
+    "label": "Případ použití 2 — tlačítko",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 21,
+    "key": "home_why_title",
+    "value": "Rekonstrukce investičního bytu bez starostí",
+    "label": "Proč my — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 22,
+    "key": "home_why_subtitle",
+    "value": "Specializujeme se výhradně na investiční byty. Víme, co je důležité — rychlost, cena a výsledek, který osloví kupce nebo nájemníky. Žádné zbytečné nadstandardy, jen to, co zvyšuje hodnotu nemovitosti.",
+    "label": "Proč my — podtitulek",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 23,
+    "key": "home_feature1_title",
+    "value": "Zvýšíme hodnotu vašeho bytu",
+    "label": "Výhoda 1 — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 24,
+    "key": "home_feature1_desc",
+    "value": "Kvalitní rekonstrukce před prodejem nebo pronájmem výrazně zvyšuje cenu nemovitosti a zkracuje dobu prodeje.",
+    "label": "Výhoda 1 — popis",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 25,
+    "key": "home_feature2_title",
+    "value": "Hotovo za 3–6 týdnů",
+    "label": "Výhoda 2 — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 26,
+    "key": "home_feature2_desc",
+    "value": "Rychlá realizace bez zbytečných průtahů. Koordinujeme všechny řemeslníky najednou, aby práce šla hladce a rychle.",
+    "label": "Výhoda 2 — popis",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 27,
+    "key": "home_feature3_title",
+    "value": "Pevná cena předem",
+    "label": "Výhoda 3 — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 28,
+    "key": "home_feature3_desc",
+    "value": "Žádná překvapení na faktuře. Domluvíme se na ceně a rozsahu předem — a tu cenu dodržíme.",
+    "label": "Výhoda 3 — popis",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 29,
+    "key": "home_cta_title",
+    "value": "Chcete byt připravit k prodeji nebo pronájmu?",
+    "label": "CTA — nadpis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 30,
+    "key": "home_cta_subtitle",
+    "value": "Kontaktujte nás — přijedeme se podívat a připravíme vám nezávaznou kalkulaci zdarma.",
+    "label": "CTA — podtitulek",
+    "page": "home",
+    "type": "textarea"
+  },
+  {
+    "id": 31,
+    "key": "home_cta_phone",
+    "value": "+420 731 599 333",
+    "label": "Telefon",
+    "page": "home",
+    "type": "tel"
+  },
+  {
+    "id": 32,
+    "key": "home_cta_button",
+    "value": "Poslat poptávku online — zdarma a nezávazně",
+    "label": "CTA tlačítko",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 33,
+    "key": "about_hero_title1",
+    "value": "Investiční byt",
+    "label": "Nadpis řádek 1",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 34,
+    "key": "about_hero_title2",
+    "value": "připravíme rychle.",
+    "label": "Nadpis řádek 2",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 35,
+    "key": "about_hero_p1",
+    "value": "BytProfit vznikl před více než 12 lety se zaměřením na jedinou věc — rychlé a cenově výhodné rekonstrukce bytů před prodejem nebo pronájmem.",
+    "label": "Odstavec 1",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 36,
+    "key": "about_hero_p2",
+    "value": "Pracujeme primárně s investory, developery a realitními makléři, kteří potřebují byt připravit rychle a efektivně. Víme, na čem záleží a co naopak není třeba přehánět.",
+    "label": "Odstavec 2",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 37,
+    "key": "about_hero_p3",
+    "value": "Za dobu naší existence jsme zrekonstruovali přes 350 bytů v Praze a okolí. Každý projekt dokončujeme v dohodnutém termínu a za dohodnutou cenu — bez výmluv a překvapení.",
+    "label": "Odstavec 3",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 38,
+    "key": "about_hero_quote",
+    "value": "Rekonstrukce, která zvyšuje hodnotu vašeho bytu.",
+    "label": "Citát",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 39,
+    "key": "about_forwhom1_title",
+    "value": "Investoři a flippeři",
+    "label": "Pro koho 1 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 40,
+    "key": "about_forwhom1_desc",
+    "value": "Koupili jste byt k prodeji se ziskem? Připravíme ho rychle a efektivně tak, aby zaujal co nejvíce kupců a dosáhl nejvyšší ceny.",
+    "label": "Pro koho 1 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 41,
+    "key": "about_forwhom2_title",
+    "value": "Pronajímatelé",
+    "label": "Pro koho 2 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 42,
+    "key": "about_forwhom2_desc",
+    "value": "Chcete byt pronajímat za vyšší nájem a lepším nájemníkům? Rekonstruovaný byt přitáhne spolehlivé nájemce a dovolí vám navýšit nájemné.",
+    "label": "Pro koho 2 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 43,
+    "key": "about_forwhom3_title",
+    "value": "Realitní makléři",
+    "label": "Pro koho 3 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 44,
+    "key": "about_forwhom3_desc",
+    "value": "Spolupracujeme s makléři, kteří potřebují byt rychle připravit k prodeji. Rychlost, kvalita a spolehlivost — to je naše vizitka.",
+    "label": "Pro koho 3 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 45,
+    "key": "about_value1_title",
+    "value": "Výnosnost",
+    "label": "Hodnota 1 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 46,
+    "key": "about_value1_desc",
+    "value": "Každá investice do rekonstrukce by se vám měla vrátit. Navrhujeme jen to, co má smysl.",
+    "label": "Hodnota 1 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 47,
+    "key": "about_value2_title",
+    "value": "Rychlost",
+    "label": "Hodnota 2 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 48,
+    "key": "about_value2_desc",
+    "value": "Čas jsou peníze. Dokončujeme v termínu, aby váš byt mohl co nejdříve vydělávat.",
+    "label": "Hodnota 2 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 49,
+    "key": "about_value3_title",
+    "value": "Partnerství",
+    "label": "Hodnota 3 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 50,
+    "key": "about_value3_desc",
+    "value": "S investory spolupracujeme dlouhodobě. Váš úspěch je i náš úspěch.",
+    "label": "Hodnota 3 — popis",
+    "page": "about",
+    "type": "textarea"
+  },
+  {
+    "id": 51,
+    "key": "about_value4_title",
+    "value": "Poctivost",
+    "label": "Hodnota 4 — nadpis",
+    "page": "about",
+    "type": "text"
+  },
+  {
+    "id": 52,
+    "key": "about_value4_desc",
+    "value": "Férová cena, žádné vícepráce navíc, jasná smlouva a splněné slovo.",
+    "label": "Hodnota 4 — popis",
+    "page": "about",
+    "type": "textarea"
+  }
+]
