@@ -5,7 +5,7 @@ import { asc, eq } from "drizzle-orm";
 import { resolve } from "path";
 import { unlinkSync, existsSync } from "fs";
 
-const GALLERY_DIR = resolve(process.cwd(), "artifacts/bytprofit-site/public/gallery");
+const GALLERY_DIR = resolve(import.meta.dirname, "../../../artifacts/bytprofit-site/public/gallery");
 
 const storage = multer.diskStorage({
   destination: GALLERY_DIR,
