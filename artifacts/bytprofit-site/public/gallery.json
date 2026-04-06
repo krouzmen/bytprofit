@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": 23,
+    "filename": "img_1775489858411_e4rca.png",
+    "description": "Jednoduchá kuchyně - Ostrov nad Ohří - malování, štukování, podlaha, rozvody, montáž linky",
+    "order": 0,
+    "active": true,
+    "createdAt": "2026-04-06T15:37:39.252Z"
+  }
+]
