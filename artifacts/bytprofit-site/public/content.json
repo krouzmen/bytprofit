@@ -344,14 +344,6 @@
     "type": "text"
   },
   {
-    "id": 12,
-    "key": "home_stat4_label",
-    "value": "",
-    "label": "Statistika 4 — popis",
-    "page": "home",
-    "type": "text"
-  },
-  {
     "id": 25,
     "key": "home_feature2_title",
     "value": "Hotovo za 1–5 týdnů",
@@ -360,10 +352,10 @@
     "type": "text"
   },
   {
-    "id": 11,
-    "key": "home_stat4_value",
-    "value": "",
-    "label": "Statistika 4 — hodnota",
+    "id": 12,
+    "key": "home_stat4_label",
+    "value": "Let zkušeností",
+    "label": "Statistika 4 — popis",
     "page": "home",
     "type": "text"
   },
@@ -404,6 +396,14 @@
     "key": "home_stat1_label",
     "value": "Každá investice do rekonstrukce by se vám měla vrátit.",
     "label": "Statistika 1 — popis",
+    "page": "home",
+    "type": "text"
+  },
+  {
+    "id": 11,
+    "key": "home_stat4_value",
+    "value": "10+",
+    "label": "Statistika 4 — hodnota",
     "page": "home",
     "type": "text"
   },
