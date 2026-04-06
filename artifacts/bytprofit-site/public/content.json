@@ -1,13 +1,5 @@
 [
   {
-    "id": 1,
-    "key": "home_hero_badge",
-    "value": "Rekonstrukce investičních bytů — Praha a okolí",
-    "label": "Hero badge",
-    "page": "home",
-    "type": "text"
-  },
-  {
     "id": 2,
     "key": "home_hero_title1",
     "value": "Levně. Rychle.",
@@ -328,6 +320,14 @@
     "type": "text"
   },
   {
+    "id": 1,
+    "key": "home_hero_badge",
+    "value": "Rekonstrukce investičních bytů — Karlovy Vary, Plzeň a okolí",
+    "label": "Hero badge",
+    "page": "home",
+    "type": "text"
+  },
+  {
     "id": 10,
     "key": "home_stat3_label",
     "value": "Týdnů na rekonstrukci",
@@ -392,14 +392,6 @@
     "type": "textarea"
   },
   {
-    "id": 37,
-    "key": "about_hero_p3",
-    "value": "",
-    "label": "Odstavec 3",
-    "page": "about",
-    "type": "textarea"
-  },
-  {
     "id": 40,
     "key": "about_forwhom1_desc",
     "value": "Koupili jste byt a chcete ho připravit k prodeji se ziskem? Připravíme ho rychle a efektivně tak, aby zaujal co nejvíce kupců a dosáhl nejvyšší ceny.",
@@ -414,5 +406,13 @@
     "label": "Statistika 1 — popis",
     "page": "home",
     "type": "text"
+  },
+  {
+    "id": 37,
+    "key": "about_hero_p3",
+    "value": "Za dobu naší existence jsme zrekonstruovali přes 350 bytů v Karlových Varech, Plzni a okolí. Každý projekt dokončujeme v dohodnutém termínu a za dohodnutou cenu — bez výmluv a překvapení.",
+    "label": "Odstavec 3",
+    "page": "about",
+    "type": "textarea"
   }
 ]
