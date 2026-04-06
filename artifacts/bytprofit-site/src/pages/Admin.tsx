@@ -258,6 +258,7 @@ function GalleryItemCard({ item, total, onUpdate, onDelete, onMove }: {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const dirty = desc !== item.description;
 
   const handleSaveDesc = async () => {
@@ -285,16 +286,19 @@ function GalleryItemCard({ item, total, onUpdate, onDelete, onMove }: {
       className={`bg-card border border-border rounded-2xl overflow-hidden shadow-sm ${!item.active ? "opacity-60" : ""}`}
     >
       <div className="relative aspect-video bg-muted overflow-hidden">
-        <img
-          src={`/gallery/${item.filename}`}
-          alt={item.description || "Fotografie"}
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            const img = e.target as HTMLImageElement;
-            img.style.display = "none";
-            img.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-muted-foreground"><svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div>`;
-          }}
-        />
+        {imgError ? (
+          <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
+            <ImageIcon className="w-10 h-10 opacity-30" />
+            <span className="text-xs">{item.filename}</span>
+          </div>
+        ) : (
+          <img
+            src={`/gallery/${item.filename}`}
+            alt={item.description || "Fotografie"}
+            className="w-full h-full object-cover"
+            onError={() => setImgError(true)}
+          />
+        )}
         <div className="absolute top-2 right-2 flex gap-1.5">
           <button
             onClick={() => onUpdate(item.id, { active: !item.active })}
