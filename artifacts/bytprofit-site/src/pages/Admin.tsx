@@ -59,17 +59,26 @@ function PublishButton() {
 
 type EditState = { name: string; icon: string; shortDescription: string; description: string };
 
-function ServiceCard({ service, onToggle, isPending }: {
+function ServiceCard({ service, onToggle, onMove, isPending, isFirst, isLast }: {
   service: Service;
   onToggle: (id: number, field: "active" | "featured", value: boolean) => void;
+  onMove: (id: number, direction: "up" | "down") => Promise<void>;
   isPending: boolean;
+  isFirst: boolean;
+  isLast: boolean;
 }) {
   const updateService = useUpdateService();
   const [expanded, setExpanded] = useState(false);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [moving, setMoving] = useState(false);
   const [edit, setEdit] = useState<EditState>({ name: service.name, icon: service.icon, shortDescription: service.shortDescription, description: service.description });
+
+  const handleMove = async (direction: "up" | "down") => {
+    setMoving(true);
+    try { await onMove(service.id, direction); } finally { setMoving(false); }
+  };
 
   const handleEdit = () => { setEdit({ name: service.name, icon: service.icon, shortDescription: service.shortDescription, description: service.description }); setEditing(true); setExpanded(true); };
   const handleCancel = () => { setEditing(false); };
@@ -95,6 +104,10 @@ function ServiceCard({ service, onToggle, isPending }: {
           <p className="text-sm text-muted-foreground truncate mt-0.5">{service.shortDescription}</p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
+          <div className="flex flex-col gap-0.5">
+            <button onClick={() => handleMove("up")} disabled={isFirst || moving} title="Posunout výš" className="p-1 rounded-lg border border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-all"><ArrowUp className="w-3 h-3" /></button>
+            <button onClick={() => handleMove("down")} disabled={isLast || moving} title="Posunout níž" className="p-1 rounded-lg border border-border bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:cursor-not-allowed transition-all"><ArrowDown className="w-3 h-3" /></button>
+          </div>
           <button onClick={handleEdit} title="Upravit texty" className="p-2.5 rounded-xl border border-border bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-200"><Pencil className="w-4 h-4" /></button>
           {service.active && <button onClick={() => onToggle(service.id, "featured", !service.featured)} disabled={isPending} title={service.featured ? "Odebrat z úvodní stránky" : "Zobrazit na úvodní stránce"} className={`p-2.5 rounded-xl border transition-all duration-200 ${service.featured ? "bg-amber-50 border-amber-200 text-amber-600 hover:bg-amber-100" : "bg-muted border-border text-muted-foreground hover:border-amber-300 hover:text-amber-500"}`}>{service.featured ? <Star className="w-4 h-4 fill-current" /> : <StarOff className="w-4 h-4" />}</button>}
           <button onClick={() => onToggle(service.id, "active", !service.active)} disabled={isPending} className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border font-semibold text-sm transition-all duration-200 ${service.active ? "bg-green-50 border-green-200 text-green-700 hover:bg-red-50 hover:border-red-200 hover:text-red-600" : "bg-muted border-border text-muted-foreground hover:bg-green-50 hover:border-green-200 hover:text-green-700"}`}>
@@ -514,6 +527,24 @@ export default function Admin() {
     [updateService, refetch]
   );
 
+  const handleMove = useCallback(
+    async (id: number, direction: "up" | "down") => {
+      if (!services) return;
+      const sorted = [...services].sort((a, b) => a.order - b.order);
+      const idx = sorted.findIndex(s => s.id === id);
+      const swapIdx = direction === "up" ? idx - 1 : idx + 1;
+      if (swapIdx < 0 || swapIdx >= sorted.length) return;
+      const a = sorted[idx];
+      const b = sorted[swapIdx];
+      await Promise.all([
+        updateService.mutateAsync({ id: a.id, data: { order: b.order } }),
+        updateService.mutateAsync({ id: b.id, data: { order: a.order } }),
+      ]);
+      refetch();
+    },
+    [services, updateService, refetch]
+  );
+
   return (
     <div className="min-h-screen pt-28 pb-24 bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -564,8 +595,15 @@ export default function Admin() {
               ) : (
                 <div className="space-y-3">
                   {services?.map((service, i) => (
-                    <motion.div key={service.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
-                      <ServiceCard service={service} onToggle={handleToggle} isPending={updateService.isPending} />
+                    <motion.div key={service.id} layout initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.04 }}>
+                      <ServiceCard
+                        service={service}
+                        onToggle={handleToggle}
+                        onMove={handleMove}
+                        isPending={updateService.isPending}
+                        isFirst={i === 0}
+                        isLast={i === (services?.length ?? 0) - 1}
+                      />
                     </motion.div>
                   ))}
                 </div>
@@ -575,6 +613,7 @@ export default function Admin() {
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div className="text-sm text-muted-foreground space-y-1">
+                    <p><strong className="text-foreground">Šipky ↑↓</strong> — změní pořadí zobrazení služby.</p>
                     <p><strong className="text-foreground">Tužka</strong> — otevře editor pro název, ikonu a popis.</p>
                     <p><strong className="text-foreground">Hvězdička</strong> — zobrazí službu na úvodní stránce jako doporučenou.</p>
                     <p><strong className="text-foreground">Aktivní / Skrytá</strong> — zákazníci vidí jen aktivní služby.</p>
