@@ -72,7 +72,7 @@
     "description": "Navrhneme vám nejmenší rozsah úprav pro dosažení nejvyššího zisku pronájmu, či prodeje. Kompletní rekonstrukce od A do Z včetně projekční práce — koordinujeme všechny řemeslníky, vy se nemusíte o nic starat.",
     "shortDescription": "Vše v jednom",
     "icon": "🔑",
-    "featured": false,
+    "featured": true,
     "order": 7,
     "active": true
   }

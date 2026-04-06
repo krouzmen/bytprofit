@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "filename": "img_01_kitchen_island.jpg",
+    "description": "Moderní kuchyně s centrálním ostrůvkem a vestavěnými spotřebiči — kompletní rekonstrukce na klíč",
+    "order": 0,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:09.642Z"
+  },
+  {
+    "id": 2,
+    "filename": "img_02_kitchen_white.jpg",
+    "description": "Světlá kuchyňská linka s bílými dvířky a pracovní deskou — nová elektroinstalace a obklady",
+    "order": 1,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:13.723Z"
+  },
+  {
+    "id": 3,
+    "filename": "img_03_kitchen_modern.jpg",
+    "description": "Otevřená kuchyň propojená s obývacím pokojem — nové podlahy, malování a kuchyňská linka",
+    "order": 2,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:17.613Z"
+  },
+  {
+    "id": 4,
+    "filename": "img_04_kitchen_open.jpg",
+    "description": "Kuchyňský kout s jídelním koutem — rekonstrukce zahrnovala nové rozvody vody i elektřiny",
+    "order": 3,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:21.504Z"
+  },
+  {
+    "id": 5,
+    "filename": "img_05_kitchen_dark.jpg",
+    "description": "Stylová tmavá kuchyně s matným povrchem dvířek a kamennou pracovní deskou",
+    "order": 4,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:25.734Z"
+  },
+  {
+    "id": 6,
+    "filename": "img_06_living_room.jpg",
+    "description": "Obývací pokoj po rekonstrukci — nová vinylová podlaha, vyrovnané stěny a moderní osvětlení",
+    "order": 5,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:29.651Z"
+  },
+  {
+    "id": 7,
+    "filename": "img_07_living_modern.jpg",
+    "description": "Světlý obývací pokoj s parketami — kompletní vymalování a oprava stěn",
+    "order": 6,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:33.471Z"
+  },
+  {
+    "id": 8,
+    "filename": "img_08_bedroom.jpg",
+    "description": "Ložnice připravená k pronájmu — nová podlaha, malování a vestavěné osvětlení",
+    "order": 7,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:37.358Z"
+  },
+  {
+    "id": 9,
+    "filename": "img_09_bedroom_light.jpg",
+    "description": "Vzdušná ložnice s bílými stěnami a laminátovou podlahou — rekonstrukce za 5 dní",
+    "order": 8,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:41.244Z"
+  },
+  {
+    "id": 10,
+    "filename": "img_10_apartment.jpg",
+    "description": "Celkový pohled na rekonstruovaný byt — předáno čisté a připravené k nastěhování",
+    "order": 9,
+    "active": true,
+    "createdAt": "2026-04-06T15:18:45.148Z"
+  }
+]
