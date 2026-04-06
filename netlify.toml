@@ -1,0 +1,12 @@
+[build]
+  command = "pnpm --filter @workspace/bytprofit-site run build"
+  publish = "artifacts/bytprofit-site/dist/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PNPM_VERSION = "9"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
