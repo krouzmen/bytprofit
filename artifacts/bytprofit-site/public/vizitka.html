@@ -7,7 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
 
   body {
     font-family: 'Inter', system-ui, sans-serif;
@@ -178,6 +183,13 @@
     justify-content: center;
   }
 
+  .qr-img {
+    display: block;
+    width: 130px;
+    height: 130px;
+    border-radius: 2px;
+  }
+
   #qrcode canvas {
     display: block;
     border-radius: 2px;
@@ -298,6 +310,7 @@
     .back-claim { font-size: 3mm; }
     .back-url { font-size: 3.2mm; }
     .back-contact { font-size: 2.8mm; }
+    .qr-img { width: 32mm !important; height: 32mm !important; }
     #qrcode canvas { width: 32mm !important; height: 32mm !important; }
   }
 </style>
@@ -339,8 +352,8 @@
     <div class="card">
       <div class="back">
         <div class="qr-wrap">
-          <svg style="width:130px;height:130px;display:block;" xmlns="http://www.w3.org/2000/svg" version="1.1" width="162" height="162">
-        <!-- Created with https://api.qrserver.com (QR Code API, see goQR.me/api for information) -->
+          <img src="images/qr-bytprofit.png" alt="QR bytprofit.cz" class="qr-img">
+          <!-- old svg hidden below --><svg style="display:none" xmlns="http://www.w3.org/2000/svg" version="1.1" width="162" height="162">
         <title>QR Code</title>
         <desc>https://bytprofit.cz</desc>
         <rect style="fill:rgb(255, 255, 255);fill-opacity:1" x="0" y="0" width="162" height="162" />
