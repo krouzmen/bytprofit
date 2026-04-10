@@ -64,14 +64,6 @@
     "type": "text"
   },
   {
-    "id": 19,
-    "key": "home_usecase2_desc",
-    "value": "Rekonstruovaný byt získá vyššího nájemníka za vyšší nájemné. Méně starostí, vyšší výnos.",
-    "label": "Případ použití 2 — popis",
-    "page": "home",
-    "type": "textarea"
-  },
-  {
     "id": 20,
     "key": "home_usecase2_cta",
     "value": "Chci pronajímat",
@@ -342,6 +334,14 @@
     "label": "Statistika 1 — hodnota",
     "page": "home",
     "type": "text"
+  },
+  {
+    "id": 19,
+    "key": "home_usecase2_desc",
+    "value": "Rekonstruovaný byt získá spolehlivějšího nájemníka za vyšší nájemné. Méně starostí, vyšší výnos.",
+    "label": "Případ použití 2 — popis",
+    "page": "home",
+    "type": "textarea"
   },
   {
     "id": 25,
