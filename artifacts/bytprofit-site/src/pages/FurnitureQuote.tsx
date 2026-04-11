@@ -92,21 +92,37 @@ export default function FurnitureQuote() {
     setSubmitting(true);
     setServerError(false);
     try {
-      const body = new URLSearchParams({
-        "form-name": "poptavka-nabytku",
-        name: form.name,
-        email: form.email,
-        furnitureType: form.furnitureType.join(", "),
-        dimensions: form.dimensions,
-        budget: form.budget,
-        message: form.message,
-      });
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      });
-      if (!res.ok && import.meta.env.PROD) throw new Error(`HTTP ${res.status}`);
+      if (import.meta.env.DEV) {
+        const res = await fetch("/api/furniture-quotes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            furnitureType: form.furnitureType.join(", "),
+            dimensions: form.dimensions,
+            budget: form.budget || undefined,
+            message: form.message || undefined,
+          }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      } else {
+        const body = new URLSearchParams({
+          "form-name": "poptavka-nabytku",
+          name: form.name,
+          email: form.email,
+          furnitureType: form.furnitureType.join(", "),
+          dimensions: form.dimensions,
+          budget: form.budget,
+          message: form.message,
+        });
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      }
       setSuccess(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
