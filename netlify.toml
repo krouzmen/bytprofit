@@ -1,6 +1,7 @@
 [build]
   command = "pnpm install --no-frozen-lockfile && pnpm --filter @workspace/bytprofit-site run build"
   publish = "artifacts/bytprofit-site/dist/public"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "20"
