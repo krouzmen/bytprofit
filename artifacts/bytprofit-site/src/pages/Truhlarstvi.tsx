@@ -1,40 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, TreePine, Sofa, DoorOpen, BookOpen, ChefHat, Bed } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useContent } from "@/hooks/useContent";
-
-const products = [
-  {
-    icon: <Sofa className="w-7 h-7" />,
-    title: "Obývací nábytek",
-    desc: "Pohovky, vitríny, TV stěny, police a skříně do obývacích pokojů — vše na míru dle přání zákazníka.",
-  },
-  {
-    icon: <ChefHat className="w-7 h-7" />,
-    title: "Kuchyňský nábytek",
-    desc: "Kuchyňské linky, ostrůvky, jídelní stoly a lavice. Masivní dřevo i moderní povrchy.",
-  },
-  {
-    icon: <Bed className="w-7 h-7" />,
-    title: "Ložnicový nábytek",
-    desc: "Postele, noční stolky, komody a šatní skříně. Kvalitní spánek i elegantní styl.",
-  },
-  {
-    icon: <DoorOpen className="w-7 h-7" />,
-    title: "Dveře a zárubně",
-    desc: "Interiérové dřevěné dveře, posuvné dveře a vestavěné skříně. Přesné provedení, dokonalý spoj.",
-  },
-  {
-    icon: <BookOpen className="w-7 h-7" />,
-    title: "Pracovní a kancelářský nábytek",
-    desc: "Pracovní stoly, knihovny, vestavěné regály — funkční řešení pro domácí kanceláře i firmy.",
-  },
-  {
-    icon: <TreePine className="w-7 h-7" />,
-    title: "Zahradní a venkovní nábytek",
-    desc: "Zahradní lavičky, posezení, pergoly a truhlíky z odolného dřeva. Krása i trvanlivost.",
-  },
-];
 
 const woods = ["Dub", "Buk", "Borovice", "Smrk", "Ořech", "Jasan", "Třešeň"];
 
@@ -47,6 +14,22 @@ const DEFAULTS = {
   truhlarstvi_products_title: "Co vyrábíme",
   truhlarstvi_products_desc:
     "Zakázkový nábytek všech druhů. Pracujeme s přírodním dřevem a klademe důraz na precizní řemeslo a dlouhou životnost.",
+  truhlarstvi_prod1_icon: "🛋️",
+  truhlarstvi_prod1_title: "Obývací nábytek",
+  truhlarstvi_prod1_desc:
+    "Pohovky, vitríny, TV stěny, police a skříně do obývacích pokojů — vše na míru dle přání zákazníka.",
+  truhlarstvi_prod2_icon: "🛏️",
+  truhlarstvi_prod2_title: "Ložnicový nábytek",
+  truhlarstvi_prod2_desc:
+    "Postele, noční stolky, komody a šatní skříně. Kvalitní spánek i elegantní styl.",
+  truhlarstvi_prod3_icon: "📚",
+  truhlarstvi_prod3_title: "Pracovní a kancelářský nábytek",
+  truhlarstvi_prod3_desc:
+    "Pracovní stoly, knihovny, vestavěné regály — funkční řešení pro domácí kanceláře i firmy.",
+  truhlarstvi_prod4_icon: "🌿",
+  truhlarstvi_prod4_title: "Zahradní a venkovní nábytek",
+  truhlarstvi_prod4_desc:
+    "Zahradní lavičky, posezení, pergoly a truhlíky z odolného dřeva. Krása i trvanlivost.",
   truhlarstvi_about_title1: "Tradiční řemeslo",
   truhlarstvi_about_title2: "z Podkrušnohoří",
   truhlarstvi_about_p1:
@@ -57,11 +40,18 @@ const DEFAULTS = {
     "Spolupracujeme s BytProfit na rekonstrukcích investičních bytů v Karlových Varech, Plzni a okolí — dodáváme kuchyně, vestavěné skříně a veškerý nábytek na míru přímo do vašeho bytu.",
   truhlarstvi_cta_title: "Máte zájem o nábytek na míru?",
   truhlarstvi_cta_desc:
-    "Pošlete nám nezávaznou poptávku nebo zavolejte. Rádi vám poradíme s výběrem materiálu, designem a termínem dodání.",
+    "Pošlete nám nezávaznou poptávku. Rádi vám poradíme s výběrem materiálu, designem a termínem dodání.",
 };
 
 export default function Truhlarstvi() {
   const c = useContent("truhlarstvi", DEFAULTS);
+
+  const products = [
+    { icon: c.truhlarstvi_prod1_icon, title: c.truhlarstvi_prod1_title, desc: c.truhlarstvi_prod1_desc },
+    { icon: c.truhlarstvi_prod2_icon, title: c.truhlarstvi_prod2_title, desc: c.truhlarstvi_prod2_desc },
+    { icon: c.truhlarstvi_prod3_icon, title: c.truhlarstvi_prod3_title, desc: c.truhlarstvi_prod3_desc },
+    { icon: c.truhlarstvi_prod4_icon, title: c.truhlarstvi_prod4_title, desc: c.truhlarstvi_prod4_desc },
+  ];
 
   return (
     <div className="min-h-screen pt-20 bg-background">
@@ -103,20 +93,13 @@ export default function Truhlarstvi() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link
-              href="/quote"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/30 hover:opacity-90 transition-opacity"
+              href="/poptavka-nabytku"
+              className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-primary text-white font-bold text-lg rounded-xl shadow-lg shadow-primary/30 hover:opacity-90 transition-opacity"
             >
-              Nezávazná poptávka <ArrowRight className="w-4 h-4" />
+              Nezávazná poptávka nábytku <ArrowRight className="w-5 h-5" />
             </Link>
-            <a
-              href="tel:+420724496091"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/15 text-white font-semibold rounded-xl hover:bg-white/25 transition-colors"
-            >
-              📞 +420 724 496 091
-            </a>
           </motion.div>
         </div>
       </section>
@@ -131,23 +114,33 @@ export default function Truhlarstvi() {
             {c.truhlarstvi_products_desc}
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((p, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.07 }}
+              transition={{ delay: i * 0.08 }}
               className="bg-card border border-border/50 rounded-2xl p-7 hover:border-primary/40 hover:shadow-lg hover:shadow-black/5 transition-all duration-300 group"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300 text-3xl">
                 {p.icon}
               </div>
-              <h3 className="text-lg font-bold mb-2">{p.title}</h3>
+              <h3 className="text-base font-bold mb-2">{p.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}
+        </div>
+
+        {/* CTA below grid */}
+        <div className="text-center mt-12">
+          <Link
+            href="/poptavka-nabytku"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-secondary text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-md"
+          >
+            Poptat nábytek na míru <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 
@@ -230,20 +223,12 @@ export default function Truhlarstvi() {
           <p className="text-white/75 mb-8 leading-relaxed">
             {c.truhlarstvi_cta_desc}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/quote"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/30 hover:opacity-90 transition-opacity"
-            >
-              Odeslat poptávku <ArrowRight className="w-4 h-4" />
-            </Link>
-            <a
-              href="mailto:bytprofit@gmail.com"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/15 text-white font-semibold rounded-xl hover:bg-white/25 transition-colors"
-            >
-              ✉️ bytprofit@gmail.com
-            </a>
-          </div>
+          <Link
+            href="/poptavka-nabytku"
+            className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-primary text-white font-bold text-lg rounded-xl shadow-lg shadow-primary/30 hover:opacity-90 transition-opacity"
+          >
+            Odeslat poptávku nábytku <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 

@@ -518,5 +518,101 @@
     "label": "Hero — popis",
     "page": "truhlarstvi",
     "type": "textarea"
+  },
+  {
+    "id": 67,
+    "key": "truhlarstvi_prod1_icon",
+    "value": "🛋️",
+    "label": "Produkt 1 — ikona",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 68,
+    "key": "truhlarstvi_prod1_title",
+    "value": "Obývací nábytek",
+    "label": "Produkt 1 — název",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 69,
+    "key": "truhlarstvi_prod1_desc",
+    "value": "Pohovky, vitríny, TV stěny, police a skříně do obývacích pokojů — vše na míru dle přání zákazníka.",
+    "label": "Produkt 1 — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 70,
+    "key": "truhlarstvi_prod2_icon",
+    "value": "🛏️",
+    "label": "Produkt 2 — ikona",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 71,
+    "key": "truhlarstvi_prod2_title",
+    "value": "Ložnicový nábytek",
+    "label": "Produkt 2 — název",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 72,
+    "key": "truhlarstvi_prod2_desc",
+    "value": "Postele, noční stolky, komody a šatní skříně. Kvalitní spánek i elegantní styl.",
+    "label": "Produkt 2 — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 73,
+    "key": "truhlarstvi_prod3_icon",
+    "value": "📚",
+    "label": "Produkt 3 — ikona",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 74,
+    "key": "truhlarstvi_prod3_title",
+    "value": "Pracovní a kancelářský nábytek",
+    "label": "Produkt 3 — název",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 75,
+    "key": "truhlarstvi_prod3_desc",
+    "value": "Pracovní stoly, knihovny, vestavěné regály — funkční řešení pro domácí kanceláře i firmy.",
+    "label": "Produkt 3 — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 76,
+    "key": "truhlarstvi_prod4_icon",
+    "value": "🌿",
+    "label": "Produkt 4 — ikona",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 77,
+    "key": "truhlarstvi_prod4_title",
+    "value": "Zahradní a venkovní nábytek",
+    "label": "Produkt 4 — název",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 78,
+    "key": "truhlarstvi_prod4_desc",
+    "value": "Zahradní lavičky, posezení, pergoly a truhlíky z odolného dřeva. Krása i trvanlivost.",
+    "label": "Produkt 4 — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
   }
 ]

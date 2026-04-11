@@ -7,6 +7,7 @@ import Services from "@/pages/Services";
 import QuoteRequest from "@/pages/QuoteRequest";
 import About from "@/pages/About";
 import Truhlarstvi from "@/pages/Truhlarstvi";
+import FurnitureQuote from "@/pages/FurnitureQuote";
 import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 
@@ -30,6 +31,7 @@ function Router() {
           <Route path="/quote" component={QuoteRequest} />
           <Route path="/about" component={About} />
           <Route path="/truhlarstvi" component={Truhlarstvi} />
+          <Route path="/poptavka-nabytku" component={FurnitureQuote} />
           <Route path="/admin" component={Admin} />
           <Route component={NotFound} />
         </Switch>
