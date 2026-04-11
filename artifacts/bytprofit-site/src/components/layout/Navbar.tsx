@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Úvod" },
   { href: "/services", label: "Služby" },
+  { href: "/truhlarstvi", label: "Truhlářství" },
   { href: "/about", label: "O nás" },
 ];
 
