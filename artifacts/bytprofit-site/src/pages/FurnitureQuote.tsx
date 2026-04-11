@@ -11,8 +11,6 @@ const furnitureTypes = [
   "Jiný typ nábytku",
 ];
 
-const woodTypes = ["Dub", "Buk", "Borovice", "Smrk", "Ořech", "Jasan", "Třešeň", "Nevím / poradím se"];
-
 const budgetRanges = [
   "Do 10 000 Kč",
   "10 000–30 000 Kč",
@@ -26,7 +24,6 @@ type FormState = {
   name: string;
   email: string;
   furnitureType: string[];
-  wood: string;
   dimensions: string;
   budget: string;
   message: string;
@@ -36,7 +33,6 @@ const EMPTY: FormState = {
   name: "",
   email: "",
   furnitureType: [],
-  wood: "",
   dimensions: "",
   budget: "",
   message: "",
@@ -101,7 +97,6 @@ export default function FurnitureQuote() {
         name: form.name,
         email: form.email,
         furnitureType: form.furnitureType.join(", "),
-        wood: form.wood,
         dimensions: form.dimensions,
         budget: form.budget,
         message: form.message,
@@ -229,21 +224,6 @@ export default function FurnitureQuote() {
                     />
                   </Field>
 
-                  {/* Wood preference */}
-                  <Field label="Preferované dřevo">
-                    <select
-                      name="wood"
-                      value={form.wood}
-                      onChange={(e) => set("wood", e.target.value)}
-                      className={inputCls}
-                    >
-                      <option value="">— Vyberte druh dřeva (nepovinné) —</option>
-                      {woodTypes.map((w) => (
-                        <option key={w} value={w}>{w}</option>
-                      ))}
-                    </select>
-                  </Field>
-
                   {/* Dimensions / description */}
                   <Field label="Popis a přibližné rozměry *" error={errors.dimensions}>
                     <textarea
@@ -251,7 +231,7 @@ export default function FurnitureQuote() {
                       value={form.dimensions}
                       onChange={(e) => set("dimensions", e.target.value)}
                       rows={4}
-                      placeholder="Např.: Šatní skříň 220 × 60 × 240 cm s posuvnými dveřmi, 4 police, 1 tyč na věšáky. Preferuji světlý dub."
+                      placeholder="Např.: Šatní skříň 220 × 60 × 240 cm s posuvnými dveřmi, 4 police, 1 tyč na věšáky."
                       className={`${inputCls} resize-none leading-relaxed`}
                     />
                   </Field>
