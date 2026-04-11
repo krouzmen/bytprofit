@@ -86,15 +86,11 @@ export default function QuoteRequest() {
         // Dev: post to local API server
         await createQuoteMutation.mutateAsync({ data });
       } else {
-        // Production (Netlify): use Netlify Forms
-        const body = new URLSearchParams({ "form-name": "poptavka" });
-        (Object.entries(data) as [string, string | undefined][]).forEach(([key, val]) => {
-          if (val) body.append(key, val);
-        });
-        const res = await fetch("/", {
+        // Production (Netlify): call Netlify Function directly
+        const res = await fetch("/.netlify/functions/contact", {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: body.toString(),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ formType: "quote", ...data }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }

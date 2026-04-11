@@ -107,19 +107,19 @@ export default function FurnitureQuote() {
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       } else {
-        const body = new URLSearchParams({
-          "form-name": "poptavka-nabytku",
-          name: form.name,
-          email: form.email,
-          furnitureType: form.furnitureType.join(", "),
-          dimensions: form.dimensions,
-          budget: form.budget,
-          message: form.message,
-        });
-        const res = await fetch("/", {
+        // Production (Netlify): call Netlify Function directly
+        const res = await fetch("/.netlify/functions/contact", {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: body.toString(),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            formType: "furniture",
+            name: form.name,
+            email: form.email,
+            furnitureType: form.furnitureType.join(", "),
+            dimensions: form.dimensions,
+            budget: form.budget || undefined,
+            message: form.message || undefined,
+          }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
