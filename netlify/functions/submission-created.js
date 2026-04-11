@@ -10,6 +10,14 @@ function row(label, value) {
   </tr>`;
 }
 
+function block(heading, text) {
+  if (!text) return "";
+  return `<div style="margin-top:20px;padding:16px;background:#f9f9f9;border-radius:8px;border-left:4px solid #e86c2c">
+    <p style="margin:0 0 6px;font-weight:bold;color:#555">${heading}</p>
+    <p style="margin:0;color:#222;white-space:pre-wrap">${text}</p>
+  </div>`;
+}
+
 function wrap(title, tableRows, blocks) {
   return `<!DOCTYPE html>
 <html><head><meta charset="utf-8"></head>
@@ -27,14 +35,6 @@ function wrap(title, tableRows, blocks) {
     </div>
   </div>
 </body></html>`;
-}
-
-function block(heading, text) {
-  if (!text) return "";
-  return `<div style="margin-top:20px;padding:16px;background:#f9f9f9;border-radius:8px;border-left:4px solid #e86c2c">
-    <p style="margin:0 0 6px;font-weight:bold;color:#555">${heading}</p>
-    <p style="margin:0;color:#222;white-space:pre-wrap">${text}</p>
-  </div>`;
 }
 
 function buildFurnitureEmail(d) {
@@ -56,13 +56,15 @@ function buildQuoteEmail(d) {
   return wrap("Nová poptávka rekonstrukce — BytProfit", rows, block("Popis prací:", d.description));
 }
 
-export const handler = async (event) => {
+exports.handler = async function (event) {
   try {
     const body = JSON.parse(event.body || "{}");
     const payload = body.payload || {};
     const formName = payload.form_name || "";
     const d = payload.data || {};
     const replyTo = d.email || payload.email || TO;
+
+    console.log("Form submitted:", formName, JSON.stringify(d));
 
     let subject, html;
 
@@ -74,7 +76,8 @@ export const handler = async (event) => {
       subject = `Nová poptávka rekonstrukce od ${name}`;
       html = buildQuoteEmail(d);
     } else {
-      return { statusCode: 200, body: `Unknown form "${formName}", skipping` };
+      console.log(`Unknown form "${formName}", skipping`);
+      return { statusCode: 200, body: "skipped" };
     }
 
     const key = process.env.RESEND_API_KEY;
@@ -85,21 +88,24 @@ export const handler = async (event) => {
 
     const res = await fetch(RESEND_API, {
       method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+      headers: {
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ from: FROM, to: TO, reply_to: replyTo, subject, html }),
     });
 
+    const result = await res.json();
+
     if (!res.ok) {
-      const err = await res.text();
-      console.error("Resend error:", err);
+      console.error("Resend error:", JSON.stringify(result));
       return { statusCode: 500, body: "Resend error" };
     }
 
-    const result = await res.json();
     console.log("Email sent:", result.id);
     return { statusCode: 200, body: "OK" };
   } catch (err) {
-    console.error("submission-created error:", err);
+    console.error("submission-created error:", err.message);
     return { statusCode: 500, body: "Internal error" };
   }
 };
