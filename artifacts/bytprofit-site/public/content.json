@@ -440,14 +440,6 @@
     "type": "text"
   },
   {
-    "id": 57,
-    "key": "truhlarstvi_hero_desc",
-    "value": "Truhlářská dílna z Podkrušnohoří s dlouholetou tradicí. Vyrábíme veškerý nábytek z přírodního dřeva na míru — od kuchyní po ložnice, od kanceláří po zahrady. Každý kus je originál.",
-    "label": "Hero — popis",
-    "page": "truhlarstvi",
-    "type": "textarea"
-  },
-  {
     "id": 58,
     "key": "truhlarstvi_products_title",
     "value": "Co vyrábíme",
@@ -496,14 +488,6 @@
     "type": "textarea"
   },
   {
-    "id": 64,
-    "key": "truhlarstvi_about_p3",
-    "value": "Spolupracujeme s BytProfit na rekonstrukcích investičních bytů v Karlových Varech, Plzni a okolí — dodáváme kuchyně, vestavěné skříně a veškerý nábytek na míru přímo do vašeho bytu.",
-    "label": "O nás — odstavec 3 (spolupráce)",
-    "page": "truhlarstvi",
-    "type": "textarea"
-  },
-  {
     "id": 65,
     "key": "truhlarstvi_cta_title",
     "value": "Máte zájem o nábytek na míru?",
@@ -516,6 +500,22 @@
     "key": "truhlarstvi_cta_desc",
     "value": "Pošlete nám nezávaznou poptávku nebo zavolejte. Rádi vám poradíme s výběrem materiálu, designem a termínem dodání.",
     "label": "CTA — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 64,
+    "key": "truhlarstvi_about_p3",
+    "value": "Spolupracujeme s BytProfit na rekonstrukcích investičních bytů v Karlových Varech, Plzni a okolí — dodáváme vestavěné skříně a veškerý nábytek na míru přímo do vašeho bytu.",
+    "label": "O nás — odstavec 3 (spolupráce)",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 57,
+    "key": "truhlarstvi_hero_desc",
+    "value": "Truhlářská dílna z Podkrušnohoří s dlouholetou tradicí. Vyrábíme veškerý nábytek z přírodního dřeva na míru — od stolů po postele, od kanceláří po zahrady. Každý kus je originál.",
+    "label": "Hero — popis",
     "page": "truhlarstvi",
     "type": "textarea"
   }
