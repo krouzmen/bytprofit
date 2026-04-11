@@ -168,6 +168,7 @@ function ServiceCard({ service, onToggle, onMove, isPending, isFirst, isLast }: 
 const PAGE_LABELS: Record<string, { label: string; icon: React.ReactNode }> = {
   home: { label: "Úvodní stránka", icon: <Home className="w-4 h-4" /> },
   about: { label: "O nás", icon: <Info className="w-4 h-4" /> },
+  truhlarstvi: { label: "Truhlářství", icon: <span className="text-sm">🪑</span> },
 };
 
 function ContentBlock({ block, onSaved }: { block: SiteContent; onSaved: () => void }) {

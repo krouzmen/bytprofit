@@ -414,5 +414,109 @@
     "label": "Odstavec 3",
     "page": "about",
     "type": "textarea"
+  },
+  {
+    "id": 54,
+    "key": "truhlarstvi_hero_badge",
+    "value": "Truhlářství Podkrušnohoří",
+    "label": "Hero — odznak",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 55,
+    "key": "truhlarstvi_hero_title1",
+    "value": "Nábytek z masivu —",
+    "label": "Hero — nadpis řádek 1",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 56,
+    "key": "truhlarstvi_hero_title2",
+    "value": "přímo z Podkrušnohoří",
+    "label": "Hero — nadpis řádek 2 (oranžový)",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 57,
+    "key": "truhlarstvi_hero_desc",
+    "value": "Truhlářská dílna z Podkrušnohoří s dlouholetou tradicí. Vyrábíme veškerý nábytek z přírodního dřeva na míru — od kuchyní po ložnice, od kanceláří po zahrady. Každý kus je originál.",
+    "label": "Hero — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 58,
+    "key": "truhlarstvi_products_title",
+    "value": "Co vyrábíme",
+    "label": "Sekce produktů — nadpis",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 59,
+    "key": "truhlarstvi_products_desc",
+    "value": "Zakázkový nábytek všech druhů. Pracujeme s přírodním dřevem a klademe důraz na precizní řemeslo a dlouhou životnost.",
+    "label": "Sekce produktů — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 60,
+    "key": "truhlarstvi_about_title1",
+    "value": "Tradiční řemeslo",
+    "label": "O nás — nadpis řádek 1",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 61,
+    "key": "truhlarstvi_about_title2",
+    "value": "z Podkrušnohoří",
+    "label": "O nás — nadpis řádek 2 (oranžový)",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 62,
+    "key": "truhlarstvi_about_p1",
+    "value": "Naše truhlárna sídlí v srdci Podkrušnohoří — regionu s bohatou tradicí zpracování dřeva. Vyrábíme nábytek s vášní pro materiál a poctivým přístupem ke každé zakázce.",
+    "label": "O nás — odstavec 1",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 63,
+    "key": "truhlarstvi_about_p2",
+    "value": "Každý kus nábytku vyrábíme ručně podle individuálních požadavků zákazníka. Používáme výhradně prověřené dřevo z udržitelných zdrojů a ekologické povrchové úpravy šetrné k životnímu prostředí.",
+    "label": "O nás — odstavec 2",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 64,
+    "key": "truhlarstvi_about_p3",
+    "value": "Spolupracujeme s BytProfit na rekonstrukcích investičních bytů v Karlových Varech, Plzni a okolí — dodáváme kuchyně, vestavěné skříně a veškerý nábytek na míru přímo do vašeho bytu.",
+    "label": "O nás — odstavec 3 (spolupráce)",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 65,
+    "key": "truhlarstvi_cta_title",
+    "value": "Máte zájem o nábytek na míru?",
+    "label": "CTA — nadpis",
+    "page": "truhlarstvi",
+    "type": "text"
+  },
+  {
+    "id": 66,
+    "key": "truhlarstvi_cta_desc",
+    "value": "Pošlete nám nezávaznou poptávku nebo zavolejte. Rádi vám poradíme s výběrem materiálu, designem a termínem dodání.",
+    "label": "CTA — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
   }
 ]

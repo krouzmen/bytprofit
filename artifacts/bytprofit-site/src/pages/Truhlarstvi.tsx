@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, TreePine, Sofa, DoorOpen, BookOpen, ChefHat, Bed } from "lucide-react";
+import { useContent } from "@/hooks/useContent";
 
 const products = [
   {
@@ -37,27 +38,48 @@ const products = [
 
 const woods = ["Dub", "Buk", "Borovice", "Smrk", "Ořech", "Jasan", "Třešeň"];
 
+const DEFAULTS = {
+  truhlarstvi_hero_badge: "Truhlářství Podkrušnohoří",
+  truhlarstvi_hero_title1: "Nábytek z masivu —",
+  truhlarstvi_hero_title2: "přímo z Podkrušnohoří",
+  truhlarstvi_hero_desc:
+    "Truhlářská dílna z Podkrušnohoří s dlouholetou tradicí. Vyrábíme veškerý nábytek z přírodního dřeva na míru — od kuchyní po ložnice, od kanceláří po zahrady. Každý kus je originál.",
+  truhlarstvi_products_title: "Co vyrábíme",
+  truhlarstvi_products_desc:
+    "Zakázkový nábytek všech druhů. Pracujeme s přírodním dřevem a klademe důraz na precizní řemeslo a dlouhou životnost.",
+  truhlarstvi_about_title1: "Tradiční řemeslo",
+  truhlarstvi_about_title2: "z Podkrušnohoří",
+  truhlarstvi_about_p1:
+    "Naše truhlárna sídlí v srdci Podkrušnohoří — regionu s bohatou tradicí zpracování dřeva. Vyrábíme nábytek s vášní pro materiál a poctivým přístupem ke každé zakázce.",
+  truhlarstvi_about_p2:
+    "Každý kus nábytku vyrábíme ručně podle individuálních požadavků zákazníka. Používáme výhradně prověřené dřevo z udržitelných zdrojů a ekologické povrchové úpravy šetrné k životnímu prostředí.",
+  truhlarstvi_about_p3:
+    "Spolupracujeme s BytProfit na rekonstrukcích investičních bytů v Karlových Varech, Plzni a okolí — dodáváme kuchyně, vestavěné skříně a veškerý nábytek na míru přímo do vašeho bytu.",
+  truhlarstvi_cta_title: "Máte zájem o nábytek na míru?",
+  truhlarstvi_cta_desc:
+    "Pošlete nám nezávaznou poptávku nebo zavolejte. Rádi vám poradíme s výběrem materiálu, designem a termínem dodání.",
+};
+
 export default function Truhlarstvi() {
+  const c = useContent("truhlarstvi", DEFAULTS);
+
   return (
     <div className="min-h-screen pt-20 bg-background">
 
-      {/* Hero */}
-      <section className="relative bg-secondary text-white py-20 overflow-hidden">
+      {/* Hero with furniture background image */}
+      <section className="relative text-white py-20 overflow-hidden min-h-[480px] flex items-center">
         <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%)",
-            backgroundSize: "20px 20px",
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/images/craftsman.png)" }}
         />
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="absolute inset-0 bg-secondary/80" />
+        <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-sm font-medium mb-6"
           >
-            🪑 Truhlářství Podkrušnohoří
+            🪑 {c.truhlarstvi_hero_badge}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -65,18 +87,17 @@ export default function Truhlarstvi() {
             transition={{ delay: 0.05 }}
             className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight"
           >
-            Nábytek z masivu —<br className="hidden sm:block" />
-            <span className="text-primary">přímo z Podkrušnohoří</span>
+            {c.truhlarstvi_hero_title1}
+            <br className="hidden sm:block" />
+            <span className="text-primary">{c.truhlarstvi_hero_title2}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg text-white/85 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Truhlářská dílna z Podkrušnohoří s dlouholetou tradicí. Vyrábíme veškerý
-            nábytek z přírodního dřeva na míru — od kuchyní po ložnice, od kanceláří
-            po zahrady. Každý kus je originál.
+            {c.truhlarstvi_hero_desc}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -103,10 +124,11 @@ export default function Truhlarstvi() {
       {/* Products grid */}
       <section className="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Co vyrábíme</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+            {c.truhlarstvi_products_title}
+          </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Zakázkový nábytek všech druhů. Pracujeme s přírodním dřevem a klademe
-            důraz na precizní řemeslo a dlouhou životnost.
+            {c.truhlarstvi_products_desc}
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -157,23 +179,18 @@ export default function Truhlarstvi() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-              Tradiční řemeslo<br />
-              <span className="text-primary">z Podkrušnohoří</span>
+              {c.truhlarstvi_about_title1}
+              <br />
+              <span className="text-primary">{c.truhlarstvi_about_title2}</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Naše truhlárna sídlí v srdci Podkrušnohoří — regionu s bohatou tradicí
-              zpracování dřeva. Vyrábíme nábytek s vášní pro materiál a poctivým
-              přístupem ke každé zakázce.
+              {c.truhlarstvi_about_p1}
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Každý kus nábytku vyrábíme ručně podle individuálních požadavků zákazníka.
-              Používáme výhradně prověřené dřevo z udržitelných zdrojů a ekologické
-              povrchové úpravy šetrné k životnímu prostředí.
+              {c.truhlarstvi_about_p2}
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Spolupracujeme s <strong>BytProfit</strong> na rekonstrukcích investičních
-              bytů v Karlových Varech, Plzni a okolí — dodáváme kuchyně, vestavěné
-              skříně a veškerý nábytek na míru přímo do vašeho bytu.
+              {c.truhlarstvi_about_p3}
             </p>
           </motion.div>
           <motion.div
@@ -208,11 +225,10 @@ export default function Truhlarstvi() {
       <section className="bg-secondary text-white py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-display font-bold mb-4">
-            Máte zájem o nábytek na míru?
+            {c.truhlarstvi_cta_title}
           </h2>
           <p className="text-white/75 mb-8 leading-relaxed">
-            Pošlete nám nezávaznou poptávku nebo zavolejte. Rádi vám poradíme
-            s výběrem materiálu, designem a termínem dodání.
+            {c.truhlarstvi_cta_desc}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
