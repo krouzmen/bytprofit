@@ -536,14 +536,6 @@
     "type": "text"
   },
   {
-    "id": 69,
-    "key": "truhlarstvi_prod1_desc",
-    "value": "Pohovky, vitríny, TV stěny, police a skříně do obývacích pokojů — vše na míru dle přání zákazníka.",
-    "label": "Produkt 1 — popis",
-    "page": "truhlarstvi",
-    "type": "textarea"
-  },
-  {
     "id": 70,
     "key": "truhlarstvi_prod2_icon",
     "value": "🛏️",
@@ -612,6 +604,14 @@
     "key": "truhlarstvi_prod4_desc",
     "value": "Zahradní lavičky, posezení, pergoly a truhlíky z odolného dřeva. Krása i trvanlivost.",
     "label": "Produkt 4 — popis",
+    "page": "truhlarstvi",
+    "type": "textarea"
+  },
+  {
+    "id": 69,
+    "key": "truhlarstvi_prod1_desc",
+    "value": "Pohovky, TV stěny, police a skříně do obývacích pokojů — vše na míru dle přání zákazníka.",
+    "label": "Produkt 1 — popis",
     "page": "truhlarstvi",
     "type": "textarea"
   }
