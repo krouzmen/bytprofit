@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BytProfit — Prezentace</title>
+  <title>BytProfit — Prezentace pro RM</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,6 @@
       --primary: #e86c2c;
       --primary-dark: #c5571a;
       --secondary: #1f2937;
-      --secondary-light: #374151;
       --bg: #fafafa;
       --card: #ffffff;
       --text: #111827;
@@ -32,12 +31,7 @@
       overflow: hidden;
     }
 
-    .deck {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
+    .deck { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
 
     .slide {
       position: absolute;
@@ -53,19 +47,10 @@
       pointer-events: none;
       overflow-y: auto;
     }
-    .slide.active {
-      opacity: 1;
-      transform: translateX(0);
-      pointer-events: auto;
-    }
-    .slide.prev {
-      transform: translateX(-40px);
-    }
+    .slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+    .slide.prev { transform: translateX(-40px); }
 
-    .slide-inner {
-      width: 100%;
-      max-width: 1200px;
-    }
+    .slide-inner { width: 100%; max-width: 1200px; }
 
     /* Title slide */
     .slide-title {
@@ -160,152 +145,132 @@
       margin-bottom: 40px;
     }
 
-    /* Cards */
-    .card-grid {
-      display: grid;
-      gap: 20px;
-    }
-    .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-    .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px;
-      transition: all 0.2s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-      border-color: rgba(232,108,44,0.4);
-    }
-    .card-icon {
-      width: 56px; height: 56px;
-      border-radius: 14px;
-      background: rgba(232,108,44,0.12);
-      color: var(--primary);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
-      margin-bottom: 18px;
-    }
-    .card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .card p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 32px;
-    }
-    .stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px 24px;
-      text-align: center;
-    }
-    .stat-value {
-      font-size: clamp(36px, 4vw, 56px);
-      font-weight: 900;
-      color: var(--primary);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-    }
-    .stat-label {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
-
-    /* Process */
-    .process-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .process-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      padding: 24px 28px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
-    .process-num {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      border-radius: 14px;
-      background: var(--primary);
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      font-weight: 800;
-    }
-    .process-content h3 {
-      font-size: 19px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .process-content p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* Two-column */
+    /* Two column layout for "Co nabízíme" */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      gap: 32px;
     }
-    .image-block {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: var(--secondary);
-      border-radius: 24px;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-    }
-
-    /* Region map */
-    .region-row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-    .region-pill {
-      padding: 12px 22px;
+    .panel {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 15px;
+      border-radius: 20px;
+      padding: 32px;
+    }
+    .panel-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    .point-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .point-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .point-list li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      margin-top: 9px;
+    }
+    .point-list strong {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Spolupráce — value props */
+    .spoluprace-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 16px;
+    }
+    .spoluprace-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+    .spoluprace-card.highlight {
+      background: linear-gradient(135deg, var(--primary) 0%, #d65a1f 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 20px 50px rgba(232,108,44,0.35);
+    }
+    .spoluprace-card h3 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
-    .region-pill::before {
-      content: "📍";
+    .spoluprace-card.highlight h3 { color: #fff; }
+    .spoluprace-card .sub-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .spoluprace-card .sub-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
       font-size: 16px;
+      line-height: 1.5;
+    }
+    .spoluprace-card .sub-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 800;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+    .spoluprace-card.highlight .sub-list li::before {
+      color: #fff;
+    }
+    .spoluprace-card.highlight .commission-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      font-size: 15px;
+    }
+    .spoluprace-card.highlight .commission-row:last-child {
+      border-bottom: none;
+    }
+    .spoluprace-card.highlight .commission-pct {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .win-badge {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 8px 18px;
+      background: rgba(232,108,44,0.15);
+      color: var(--primary);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.05em;
     }
 
     /* Contact slide */
@@ -315,20 +280,36 @@
     }
     .slide-contact h2 { color: #fff; }
     .slide-contact .lead { color: rgba(255,255,255,0.7); }
-    .contact-grid {
+    .links-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       margin-top: 32px;
     }
-    .contact-card {
+    .link-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 18px;
-      padding: 28px;
-      backdrop-filter: blur(10px);
+      padding: 32px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.2s;
+      display: block;
     }
-    .contact-label {
+    .link-card:hover {
+      background: rgba(232,108,44,0.15);
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+    .link-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+    .link-label {
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
@@ -336,13 +317,12 @@
       color: var(--primary);
       margin-bottom: 8px;
     }
-    .contact-value {
-      font-size: 22px;
+    .link-value {
+      font-size: 20px;
       font-weight: 700;
       color: #fff;
+      word-break: break-all;
     }
-    .contact-value a { color: #fff; text-decoration: none; }
-    .contact-value a:hover { color: var(--primary); }
 
     .cta-row {
       display: flex;
@@ -365,63 +345,6 @@
       transition: transform 0.15s;
     }
     .cta:hover { transform: translateY(-2px); }
-    .cta.secondary {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: none;
-    }
-
-    /* Service blocks */
-    .service-block {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 36px;
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 28px;
-      margin-bottom: 16px;
-    }
-    .service-icon {
-      width: 80px; height: 80px;
-      border-radius: 18px;
-      background: var(--primary);
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 40px;
-    }
-    .service-block h3 {
-      font-size: 26px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .service-block .service-tagline {
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .service-block p {
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 15px;
-    }
-    .service-features {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    .service-features span {
-      padding: 4px 12px;
-      background: rgba(232,108,44,0.1);
-      color: var(--primary);
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-    }
 
     /* Controls */
     .controls {
@@ -444,13 +367,8 @@
       backdrop-filter: blur(10px);
       transition: background 0.15s;
     }
-    .ctrl-btn:hover {
-      background: var(--primary);
-    }
-    .ctrl-btn:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
+    .ctrl-btn:hover { background: var(--primary); }
+    .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
     .progress {
       position: fixed;
@@ -483,13 +401,9 @@
     /* Mobile */
     @media (max-width: 768px) {
       .slide { padding: 5vh 6vw; }
-      .card-grid.cols-2,
-      .card-grid.cols-3,
-      .card-grid.cols-4 { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .two-col { grid-template-columns: 1fr; gap: 30px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .service-block { grid-template-columns: 1fr; }
+      .two-col,
+      .spoluprace-grid,
+      .links-grid { grid-template-columns: 1fr; }
       .meta-row { gap: 16px; font-size: 12px; }
       .meta-row span::before { display: none; }
     }
@@ -530,255 +444,99 @@
         a Plzeňském kraji. Od vyklizení po předání zákazníkovi.
       </p>
       <div class="meta-row">
-        <span>Karlovy Vary</span>
-        <span>Plzeň</span>
-        <span>Podkrušnohoří</span>
+        <span>Karlovarský kraj</span>
+        <span>Plzeňský kraj</span>
+        <span>Prezentace pro RM</span>
       </div>
     </div>
   </section>
 
-  <!-- 2. About -->
+  <!-- 2. Co nabízíme -->
   <section class="slide">
     <div class="slide-inner">
-      <span class="section-tag">O nás</span>
-      <h2>Specializujeme se na <span class="accent">investiční byty.</span></h2>
-      <p class="lead">
-        BytProfit je rodinná firma se sídlem v Podkrušnohoří. Pomáháme majitelům
-        bytů zhodnotit jejich nemovitost před prodejem nebo pronájmem — kompletní
-        rekonstrukcí, kterou zvládneme od A do Z. Bez stresu, bez subdodavatelů,
-        které byste museli koordinovat sami.
-      </p>
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-value">10+</div>
-          <div class="stat-label">let zkušeností</div>
+      <span class="section-tag">Co nabízíme</span>
+      <h2>Rekonstrukce, které <span class="accent">vydělávají.</span></h2>
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-title">Naše zaměření</div>
+          <ul class="point-list">
+            <li>Specializujeme se na rychlé a cenově výhodné rekonstrukce <strong>investičních bytů</strong> před prodejem nebo pronájmem.</li>
+            <li>Zaměřujeme se na investory v realitním sektoru.</li>
+            <li>Poradíme vám, jak nejlépe zhodnotit váš byt — za nejmenší náklady.</li>
+            <li>Vyklizení, malování, podlahy, koupelna, kuchyně, elektrika — <strong>vše na klíč</strong> od návrhu po realizaci.</li>
+          </ul>
         </div>
-        <div class="stat">
-          <div class="stat-value">200+</div>
-          <div class="stat-label">dokončených bytů</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">2</div>
-          <div class="stat-label">kraje působnosti</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">100%</div>
-          <div class="stat-label">vlastní tým</div>
+        <div class="panel">
+          <div class="panel-title">Co tím získáte</div>
+          <ul class="point-list">
+            <li><strong>Rychlost</strong> — byt, který leží, stojí peníze. Pracujeme rychle, vyhledáme a doporučíme skladový materiál.</li>
+            <li><strong>Cena</strong> — rekonstrukce má vydělat majiteli peníze. Ať už prodat, nebo pronajmout za víc — a hlavně získat spolehlivějšího nájemníka.</li>
+            <li><strong>Pronájem</strong> — v režimu „ideální nájemce" (pronajmeme si byt od vás, vy se o nic nestaráte).</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. What we do (services) -->
+  <!-- 3. Spolupráce -->
   <section class="slide">
     <div class="slide-inner">
-      <span class="section-tag">Co děláme</span>
-      <h2>Rekonstrukce <span class="accent">na klíč.</span></h2>
-      <p class="lead">
-        Postaráme se o všechny profese pod jednou střechou. Vy jen převezmete
-        klíče od hotového bytu připraveného k prodeji nebo pronájmu.
-      </p>
-      <div class="card-grid cols-3">
-        <div class="card">
-          <div class="card-icon">🧹</div>
-          <h3>Vyklizení bytu</h3>
-          <p>Kompletní vyklizení starého nábytku a odpadu, ekologická likvidace.</p>
+      <span class="section-tag">Spolupráce</span>
+      <h2>Hledáme partnery mezi <span class="accent">realitními makléři.</span></h2>
+      <div class="spoluprace-grid">
+        <div class="spoluprace-card">
+          <h3>🤝 Nabídnete nás klientovi</h3>
+          <ul class="sub-list">
+            <li>Klient snáz pronajme svůj byt</li>
+            <li>Může byt flipnout se ziskem</li>
+            <li>Kvalitnější nemovitost = vyšší provize</li>
+          </ul>
+          <span class="win-badge">Win — Win — Win</span>
         </div>
-        <div class="card">
-          <div class="card-icon">🎨</div>
-          <h3>Malování a štukování</h3>
-          <p>Příprava povrchů, štukování, malování dle moderních trendů.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🪵</div>
-          <h3>Nové podlahy</h3>
-          <p>Vinyl, laminát, dřevo — výběr přizpůsobíme typu bytu a rozpočtu.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛁</div>
-          <h3>Rekonstrukce koupelny</h3>
-          <p>Obklady, sanita, instalace — komplet s designem i provedením.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🍳</div>
-          <h3>Rekonstrukce kuchyně</h3>
-          <p>Kuchyňské linky na míru z naší truhlárny, instalace spotřebičů.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3>Elektro a voda</h3>
-          <p>Kompletní výměna rozvodů, revize, certifikované provedení.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Truhlářství -->
-  <section class="slide">
-    <div class="slide-inner">
-      <span class="section-tag">Vlastní truhlářství</span>
-      <h2>Nábytek <span class="accent">z našeho dřeva.</span></h2>
-      <p class="lead">
-        Disponujeme vlastní truhlářskou dílnou v Podkrušnohoří. Vyrábíme
-        zakázkový nábytek z přírodního dřeva — vše, co váš byt potřebuje.
-      </p>
-      <div class="card-grid cols-4">
-        <div class="card">
-          <div class="card-icon">🛋️</div>
-          <h3>Obývací nábytek</h3>
-          <p>Pohovky, vitríny, TV stěny, police a skříně.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🛏️</div>
-          <h3>Ložnicový</h3>
-          <p>Postele, noční stolky, komody a šatní skříně.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📚</div>
-          <h3>Pracovní</h3>
-          <p>Stoly, knihovny, vestavěné regály pro kancelář.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌿</div>
-          <h3>Zahradní</h3>
-          <p>Lavičky, posezení, pergoly z odolného dřeva.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Why us -->
-  <section class="slide">
-    <div class="slide-inner">
-      <span class="section-tag">Proč BytProfit</span>
-      <h2>Jeden partner. <span class="accent">Žádné výmluvy.</span></h2>
-      <p class="lead">
-        Pracujeme bez subdodavatelů — všechno řeší náš tým. Žádné předávání zodpovědnosti
-        mezi řemeslníky, žádné prodlevy, žádné překvapení v rozpočtu.
-      </p>
-      <div class="card-grid cols-3">
-        <div class="card">
-          <div class="card-icon">🤝</div>
-          <h3>Jeden kontakt</h3>
-          <p>Komunikujete s jednou osobou — od první návštěvy až po předání klíčů.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📋</div>
-          <h3>Pevná cena</h3>
-          <p>Cenovou nabídku dodržíme. Žádné nečekané vícepráce a navyšování.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⏱️</div>
-          <h3>Dodržené termíny</h3>
-          <p>Plánujeme realisticky a držíme slovo. Vy víte, kdy můžete byt nabízet.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🌳</div>
-          <h3>Vlastní materiál</h3>
-          <p>Nábytek vyrábíme sami z přírodního dřeva — vyšší kvalita, lepší cena.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">🏆</div>
-          <h3>Reference</h3>
-          <p>Stovky spokojených majitelů investičních bytů v regionu.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">📍</div>
-          <h3>Lokální tým</h3>
-          <p>Sídlíme v Podkrušnohoří — známe místní trh i řemeslníky.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Process -->
-  <section class="slide">
-    <div class="slide-inner">
-      <span class="section-tag">Jak to probíhá</span>
-      <h2>Od poptávky <span class="accent">k předání klíčů.</span></h2>
-      <p class="lead">Čtyři kroky, které vás dělí od bytu připraveného na prodej.</p>
-      <div class="process-list">
-        <div class="process-step">
-          <div class="process-num">1</div>
-          <div class="process-content">
-            <h3>Nezávazná poptávka</h3>
-            <p>Vyplníte formulář na webu nebo zavoláte. Probereme vaše představy a termíny.</p>
+        <div class="spoluprace-card highlight">
+          <h3>💰 Nabídneme vám provizi</h3>
+          <div class="commission-row">
+            <span>Rekonstrukce nad <strong>200 000 Kč</strong></span>
+            <span class="commission-pct">7 %</span>
           </div>
-        </div>
-        <div class="process-step">
-          <div class="process-num">2</div>
-          <div class="process-content">
-            <h3>Prohlídka a cenová nabídka</h3>
-            <p>Přijedeme se podívat, zaměříme byt a do několika dní dostanete pevnou cenu.</p>
+          <div class="commission-row">
+            <span>Rekonstrukce nad <strong>50 000 Kč</strong></span>
+            <span class="commission-pct">5 %</span>
           </div>
-        </div>
-        <div class="process-step">
-          <div class="process-num">3</div>
-          <div class="process-content">
-            <h3>Realizace na klíč</h3>
-            <p>Pracujeme rychle a koordinovaně. Pravidelné fotoreporty, žádná překvapení.</p>
+          <div class="commission-row">
+            <span>Pronájem nemovitosti</span>
+            <span class="commission-pct" style="font-size:18px;opacity:0.9">domluva</span>
           </div>
-        </div>
-        <div class="process-step">
-          <div class="process-num">4</div>
-          <div class="process-content">
-            <h3>Předání hotového bytu</h3>
-            <p>Vyklizeno, uklizeno, vyfoceno. Můžete inzerovat a prodávat.</p>
-          </div>
+          <p style="margin-top:18px;font-size:13px;opacity:0.85">Z fakturované částky bez DPH.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Region -->
-  <section class="slide">
-    <div class="slide-inner">
-      <span class="section-tag">Působnost</span>
-      <h2>Kde <span class="accent">pracujeme.</span></h2>
-      <p class="lead">
-        Pokrýváme celý Karlovarský a Plzeňský kraj. Sídlíme přímo
-        v Podkrušnohoří — k vám máme blízko.
-      </p>
-      <div class="region-row">
-        <div class="region-pill">Karlovy Vary</div>
-        <div class="region-pill">Plzeň</div>
-        <div class="region-pill">Sokolov</div>
-        <div class="region-pill">Cheb</div>
-        <div class="region-pill">Mariánské Lázně</div>
-        <div class="region-pill">Klatovy</div>
-        <div class="region-pill">Tachov</div>
-        <div class="region-pill">Ostrov</div>
-        <div class="region-pill">Chodov</div>
-        <div class="region-pill">Loket</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. Contact -->
+  <!-- 4. Odkazy / Kontakt -->
   <section class="slide slide-contact">
     <div class="slide-inner">
-      <span class="section-tag" style="background: rgba(232,108,44,0.2);">Kontakt</span>
+      <span class="section-tag" style="background: rgba(232,108,44,0.2);">Odkazy</span>
       <h2>Pojďme to <span class="accent">probrat.</span></h2>
       <p class="lead">
-        Pošlete nezávaznou poptávku přes web nebo nám rovnou napište.
-        Ozveme se do 24 hodin.
+        Podívejte se na náš web a sociální sítě — nebo nám rovnou napište.
+        Ozveme se obratem.
       </p>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <div class="contact-label">E-mail</div>
-          <div class="contact-value"><a href="mailto:bytprofit@gmail.com">bytprofit@gmail.com</a></div>
-        </div>
-        <div class="contact-card">
-          <div class="contact-label">Web</div>
-          <div class="contact-value"><a href="https://bytprofit.cz" target="_blank">bytprofit.cz</a></div>
-        </div>
+      <div class="links-grid">
+        <a class="link-card" href="https://bytprofit.cz/" target="_blank" rel="noopener">
+          <div class="link-icon">🌐</div>
+          <div class="link-label">Web</div>
+          <div class="link-value">bytprofit.cz</div>
+        </a>
+        <a class="link-card" href="https://www.facebook.com/profile.php?id=61572066567108" target="_blank" rel="noopener">
+          <div class="link-icon">📘</div>
+          <div class="link-label">Facebook</div>
+          <div class="link-value">BytProfit</div>
+        </a>
       </div>
       <div class="cta-row">
-        <a class="cta" href="https://bytprofit.cz/quote" target="_blank">
-          Nezávazná poptávka →
-        </a>
-        <a class="cta secondary" href="https://bytprofit.cz" target="_blank">
-          Navštívit web
+        <a class="cta" href="mailto:bytprofit@gmail.com">
+          ✉️ bytprofit@gmail.com
         </a>
       </div>
     </div>
@@ -791,10 +549,10 @@
   <button class="ctrl-btn" id="next" title="Další (→)">›</button>
 </div>
 
-<div class="slide-counter" id="counter">1 / 8</div>
+<div class="slide-counter" id="counter">1 / 4</div>
 
 <div class="progress">
-  <div class="progress-bar" id="progress" style="width: 12.5%;"></div>
+  <div class="progress-bar" id="progress" style="width: 25%;"></div>
 </div>
 
 <script>
@@ -818,10 +576,7 @@
     progress.style.width = `${((idx + 1) / total) * 100}%`;
     prevBtn.disabled = idx === 0;
     nextBtn.disabled = idx === total - 1;
-
-    if (history.replaceState) {
-      history.replaceState(null, '', `#${idx + 1}`);
-    }
+    if (history.replaceState) history.replaceState(null, '', `#${idx + 1}`);
   }
 
   prevBtn.addEventListener('click', () => show(current - 1));
@@ -829,22 +584,17 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
-      e.preventDefault();
-      show(current + 1);
+      e.preventDefault(); show(current + 1);
     } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      e.preventDefault();
-      show(current - 1);
-    } else if (e.key === 'Home') {
-      show(0);
-    } else if (e.key === 'End') {
-      show(total - 1);
-    } else if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault(); show(current - 1);
+    } else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(total - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
       if (document.fullscreenElement) document.exitFullscreen();
       else document.documentElement.requestFullscreen();
     }
   });
 
-  // Touch swipe
   let touchStartX = 0;
   document.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
@@ -852,18 +602,13 @@
   document.addEventListener('touchend', (e) => {
     const diff = e.changedTouches[0].screenX - touchStartX;
     if (Math.abs(diff) > 50) {
-      if (diff < 0) show(current + 1);
-      else show(current - 1);
+      if (diff < 0) show(current + 1); else show(current - 1);
     }
   }, { passive: true });
 
-  // Restore from URL hash
   const hash = parseInt(window.location.hash.replace('#', ''), 10);
-  if (!isNaN(hash) && hash >= 1 && hash <= total) {
-    show(hash - 1);
-  } else {
-    show(0);
-  }
+  if (!isNaN(hash) && hash >= 1 && hash <= total) show(hash - 1);
+  else show(0);
 </script>
 
 </body>
