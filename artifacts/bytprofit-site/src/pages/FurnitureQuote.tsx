@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Loader2, Sofa, ArrowLeft } from "lucide-react";
+import { CheckCircle2, Loader2, Sofa, ArrowLeft, Shield } from "lucide-react";
 import { Link } from "wouter";
 
 const furnitureTypes = [
@@ -27,6 +27,8 @@ type FormState = {
   dimensions: string;
   budget: string;
   message: string;
+  website: string; // honeypot
+  mathAnswer: string;
 };
 
 const EMPTY: FormState = {
@@ -36,16 +38,22 @@ const EMPTY: FormState = {
   dimensions: "",
   budget: "",
   message: "",
+  website: "",
+  mathAnswer: "",
 };
 
 type FieldErrors = Partial<Record<keyof FormState, string>>;
 
-function validate(f: FormState): FieldErrors {
+function validate(f: FormState, mathA: number, mathB: number): FieldErrors {
   const e: FieldErrors = {};
   if (f.name.trim().length < 2) e.name = "Zadejte jméno (min. 2 znaky)";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = "Zadejte platný e-mail";
   if (f.furnitureType.length === 0) e.furnitureType = "Vyberte alespoň jeden typ nábytku";
   if (f.dimensions.trim().length < 10) e.dimensions = "Popište prosím podrobněji (min. 10 znaků)";
+  const ans = Number(f.mathAnswer);
+  if (!Number.isFinite(ans) || ans !== mathA + mathB) {
+    e.mathAnswer = "Zkontrolujte odpověď na kontrolní otázku";
+  }
   return e;
 }
 
@@ -67,7 +75,17 @@ export default function FurnitureQuote() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [serverError, setServerError] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  // Anti-spam: random math + form open timestamp
+  const [mathA, mathB] = useMemo(
+    () => [Math.floor(Math.random() * 8) + 2, Math.floor(Math.random() * 8) + 2],
+    []
+  );
+  const openedAt = useRef<number>(Date.now());
+  useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
 
   const set = (k: keyof FormState, v: string) =>
     setForm((f) => ({ ...f, [k]: v }));
@@ -83,51 +101,57 @@ export default function FurnitureQuote() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const errs = validate(form);
+    const errs = validate(form, mathA, mathB);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
     setErrors({});
     setSubmitting(true);
-    setServerError(false);
+    setServerError(null);
     try {
-      if (import.meta.env.DEV) {
-        const res = await fetch("/api/furniture-quotes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: form.name,
-            email: form.email,
-            furnitureType: form.furnitureType.join(", "),
-            dimensions: form.dimensions,
-            budget: form.budget || undefined,
-            message: form.message || undefined,
-          }),
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      } else {
-        // Production (Netlify): call Netlify Function directly
-        const res = await fetch("/.netlify/functions/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            formType: "furniture",
-            name: form.name,
-            email: form.email,
-            furnitureType: form.furnitureType.join(", "),
-            dimensions: form.dimensions,
-            budget: form.budget || undefined,
-            message: form.message || undefined,
-          }),
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const elapsed = Date.now() - openedAt.current;
+      const payload = {
+        formType: "furniture",
+        name: form.name,
+        email: form.email,
+        furnitureType: form.furnitureType.join(", "),
+        dimensions: form.dimensions,
+        budget: form.budget || undefined,
+        message: form.message || undefined,
+        website: form.website,
+        elapsed,
+        mathA,
+        mathB,
+        mathAnswer: Number(form.mathAnswer),
+      };
+
+      const url = import.meta.env.DEV
+        ? "/api/furniture-quotes"
+        : "/.netlify/functions/contact";
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        let msg = "Odesílání selhalo. Zkuste to prosím znovu.";
+        try {
+          const data = await res.json();
+          if (data?.error) msg = data.error;
+        } catch {}
+        if (res.status === 429) {
+          msg = "Příliš mnoho požadavků. Zkuste to prosím za hodinu znovu.";
+        }
+        throw new Error(msg);
       }
       setSuccess(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err);
-      setServerError(true);
+      setServerError(err instanceof Error ? err.message : "Odesílání selhalo.");
     } finally {
       setSubmitting(false);
     }
@@ -180,13 +204,25 @@ export default function FurnitureQuote() {
               </div>
 
               <div className="bg-card rounded-3xl p-6 md:p-10 shadow-xl shadow-black/5 border border-border">
-                <form
-                  name="poptavka-nabytku"
-                  data-netlify="true"
-                  onSubmit={handleSubmit}
-                  className="space-y-6"
-                >
-                  <input type="hidden" name="form-name" value="poptavka-nabytku" />
+                <form onSubmit={handleSubmit} className="space-y-6" autoComplete="on">
+
+                  {/* Honeypot — hidden from humans, attractive to bots */}
+                  <div
+                    style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", overflow: "hidden" }}
+                    aria-hidden="true"
+                  >
+                    <label>
+                      Web (nevyplňujte):
+                      <input
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={form.website}
+                        onChange={(e) => set("website", e.target.value)}
+                      />
+                    </label>
+                  </div>
 
                   {/* Name + Email */}
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -233,11 +269,6 @@ export default function FurnitureQuote() {
                         );
                       })}
                     </div>
-                    <input
-                      type="hidden"
-                      name="furnitureType"
-                      value={form.furnitureType.join(", ")}
-                    />
                   </Field>
 
                   {/* Dimensions / description */}
@@ -279,9 +310,32 @@ export default function FurnitureQuote() {
                     />
                   </Field>
 
+                  {/* Anti-spam: math captcha */}
+                  <Field
+                    label={`Kontrolní otázka: kolik je ${mathA} + ${mathB}? *`}
+                    error={errors.mathAnswer}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Shield className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        name="mathAnswer"
+                        value={form.mathAnswer}
+                        onChange={(e) => set("mathAnswer", e.target.value)}
+                        placeholder="Zadejte odpověď"
+                        className={inputCls}
+                        autoComplete="off"
+                      />
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Ochrana proti spamovacím robotům.
+                    </p>
+                  </Field>
+
                   {serverError && (
                     <p className="text-sm text-destructive font-medium text-center">
-                      Odesílání selhalo. Zkuste prosím znovu nebo napište na bytprofit@gmail.com.
+                      {serverError}
                     </p>
                   )}
 

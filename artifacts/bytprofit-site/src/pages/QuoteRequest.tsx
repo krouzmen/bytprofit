@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Loader2, HardHat } from "lucide-react";
-import { useCreateQuote } from "@workspace/api-client-react";
+import { CheckCircle2, Loader2, HardHat, Shield } from "lucide-react";
 import { Link } from "wouter";
 
 const quoteSchema = z.object({
@@ -18,6 +17,8 @@ const quoteSchema = z.object({
   budget: z.string().optional(),
   timeline: z.string().optional(),
   address: z.string().optional(),
+  website: z.string().optional(), // honeypot
+  mathAnswer: z.string().min(1, "Odpovězte prosím na kontrolní otázku"),
 });
 
 type QuoteFormValues = z.infer<typeof quoteSchema>;
@@ -67,38 +68,84 @@ const timelines = [
 export default function QuoteRequest() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState(false);
-  const createQuoteMutation = useCreateQuote();
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  // Anti-spam: random math + form open timestamp
+  const [mathA, mathB] = useMemo(
+    () => [Math.floor(Math.random() * 8) + 2, Math.floor(Math.random() * 8) + 2],
+    []
+  );
+  const openedAt = useRef<number>(Date.now());
+  useEffect(() => {
+    openedAt.current = Date.now();
+  }, []);
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteSchema),
   });
 
   const onSubmit = async (data: QuoteFormValues) => {
+    // Math captcha check
+    const ans = Number(data.mathAnswer);
+    if (!Number.isFinite(ans) || ans !== mathA + mathB) {
+      setError("mathAnswer", { message: "Zkontrolujte odpověď na kontrolní otázku" });
+      return;
+    }
+
     setIsSubmitting(true);
-    setSubmitError(false);
+    setSubmitError(null);
     try {
+      const elapsed = Date.now() - openedAt.current;
+      const payload = {
+        formType: "quote" as const,
+        ...data,
+        elapsed,
+        mathA,
+        mathB,
+        mathAnswer: ans,
+      };
+
       if (import.meta.env.DEV) {
-        // Dev: post to local API server
-        await createQuoteMutation.mutateAsync({ data });
+        const res = await fetch("/api/quotes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          let msg = "Odeslání selhalo. Zkuste to prosím znovu.";
+          try {
+            const d = await res.json();
+            if (d?.error) msg = d.error;
+          } catch {}
+          if (res.status === 429) msg = "Příliš mnoho požadavků. Zkuste to prosím za hodinu znovu.";
+          throw new Error(msg);
+        }
       } else {
-        // Production (Netlify): call Netlify Function directly
         const res = await fetch("/.netlify/functions/contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ formType: "quote", ...data }),
+          body: JSON.stringify(payload),
         });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) {
+          let msg = "Odeslání selhalo. Zkuste to prosím znovu.";
+          try {
+            const d = await res.json();
+            if (d?.error) msg = d.error;
+          } catch {}
+          if (res.status === 429) msg = "Příliš mnoho požadavků. Zkuste to prosím za hodinu znovu.";
+          throw new Error(msg);
+        }
       }
       setIsSuccess(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       console.error("Chyba při odesílání poptávky", error);
-      setSubmitError(true);
+      setSubmitError(error instanceof Error ? error.message : "Odeslání selhalo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -131,9 +178,24 @@ export default function QuoteRequest() {
               </div>
 
               <div className="bg-card rounded-3xl p-6 md:p-10 shadow-xl shadow-black/5 border border-border">
-                <form name="poptavka" data-netlify="true" onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-                  <input type="hidden" name="form-name" value="poptavka" />
-                  
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8" autoComplete="on">
+
+                  {/* Honeypot — hidden from humans, attractive to bots */}
+                  <div
+                    style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", overflow: "hidden" }}
+                    aria-hidden="true"
+                  >
+                    <label>
+                      Web (nevyplňujte):
+                      <input
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        {...register("website")}
+                      />
+                    </label>
+                  </div>
+
                   {/* Personal Info */}
                   <div>
                     <h3 className="text-xl font-bold mb-4 border-b border-border pb-2">1. Kontaktní údaje</h3>
@@ -258,9 +320,32 @@ export default function QuoteRequest() {
                     </div>
                   </div>
 
+                  {/* Anti-spam: math captcha */}
+                  <div>
+                    <h3 className="text-xl font-bold mb-4 border-b border-border pb-2">3. Kontrolní otázka</h3>
+                    <div className="space-y-2">
+                      <label className="text-sm font-semibold text-foreground flex items-center gap-2">
+                        <Shield className="w-4 h-4 text-primary" />
+                        Ochrana proti spamu — kolik je {mathA} + {mathB}? *
+                      </label>
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        autoComplete="off"
+                        {...register("mathAnswer")}
+                        placeholder="Zadejte odpověď"
+                        className="w-full max-w-xs px-4 py-3 rounded-xl bg-background border-2 border-border focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all"
+                      />
+                      {errors.mathAnswer && <p className="text-destructive text-sm mt-1">{errors.mathAnswer.message}</p>}
+                      <p className="text-xs text-muted-foreground">
+                        Tato otázka pomáhá odlišit lidi od spamovacích robotů.
+                      </p>
+                    </div>
+                  </div>
+
                   {submitError && (
                     <div className="p-4 bg-destructive/10 border border-destructive/20 text-destructive rounded-xl text-sm font-medium">
-                      Odeslání poptávky se nezdařilo. Zkuste to prosím znovu nebo nás kontaktujte telefonicky na <a href="tel:+420724496091" className="font-bold">+420 724 496 091</a>.
+                      {submitError} Pokud potíže přetrvávají, kontaktujte nás na <a href="tel:+420724496091" className="font-bold">+420 724 496 091</a>.
                     </div>
                   )}
 

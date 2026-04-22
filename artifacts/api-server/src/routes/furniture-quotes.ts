@@ -1,5 +1,6 @@
 import { Router, type IRouter } from "express";
 import { Resend } from "resend";
+import { checkAntiSpam } from "../lib/antispam";
 
 const router: IRouter = Router();
 
@@ -60,6 +61,16 @@ function buildEmailHtml(data: {
 
 router.post("/furniture-quotes", async (req, res) => {
   try {
+    const spam = checkAntiSpam(req);
+    if (!spam.ok) {
+      if (spam.silent) {
+        res.status(200).json({ ok: true });
+        return;
+      }
+      res.status(spam.status).json({ error: spam.error });
+      return;
+    }
+
     const { name, email, furnitureType, dimensions, budget, message } = req.body as {
       name?: string;
       email?: string;

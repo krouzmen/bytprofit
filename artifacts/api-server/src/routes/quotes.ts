@@ -2,6 +2,7 @@ import { Router, type IRouter } from "express";
 import { db, quotesTable, insertQuoteSchema } from "@workspace/db";
 import { desc } from "drizzle-orm";
 import { Resend } from "resend";
+import { checkAntiSpam } from "../lib/antispam";
 
 const router: IRouter = Router();
 
@@ -75,6 +76,16 @@ router.get("/quotes", async (_req, res) => {
 
 router.post("/quotes", async (req, res) => {
   try {
+    const spam = checkAntiSpam(req);
+    if (!spam.ok) {
+      if (spam.silent) {
+        res.status(200).json({ ok: true });
+        return;
+      }
+      res.status(spam.status).json({ error: spam.error });
+      return;
+    }
+
     const parsed = insertQuoteSchema.safeParse(req.body);
     if (!parsed.success) {
       res.status(400).json({ error: "Invalid input", details: parsed.error.flatten() });
